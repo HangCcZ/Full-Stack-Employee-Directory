@@ -2,7 +2,7 @@
 
 ## Technologies and libraries used:
 
-- Next.js (Frontend)
+- Next.js (Frontend and API)
 - MongoDB (Database)
 - Figma (App layout planning)
 - TailWindCSS (Styling)
