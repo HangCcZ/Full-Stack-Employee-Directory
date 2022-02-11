@@ -3,10 +3,12 @@
 ## Technologies and libraries used:
 
 - Next.js (Frontend and API)
-- MongoDB (Database)
+- MongoDB and Mongoose (Database)
 - Figma (App layout planning)
 - TailWindCSS (Styling)
 - React Hook Form (Form entries handling and validation)
+- Playwright (Testing)
+- Postman (Backend API testing)
 
 ## Notes on how I built the application:
 
