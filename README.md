@@ -10,9 +10,23 @@
 - Playwright (Testing)
 - Postman (Backend API testing)
 
-## Notes on how I built the application:
+## Todo and Completed
+
+- [x] Create general API endpoints: **/api/employees** and **/api/employees/id**
+- [x] Test general API endpoints: **/api/employees** and **/api/employees/id**
+- [x] Setup MongoDB database connectivity and Mongoose
+- [ ] Server side pagination
+- [ ] Frontend layout based on Figma file
+- [ ] Implement search for employees
+- [ ] Implement data grouping by department, title, location
+- [ ] Setup form for user creation, update and deletion
+- [ ] Testing on Frontend
+- [ ] More testing on Backend, specifically pagination
+- [ ] Animation?
 
 ## Setup Instructions:
+
+## Notes on how I built the application:
 
 ## Resources created:
 
