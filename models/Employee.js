@@ -3,9 +3,9 @@ import mongoose from 'mongoose'
 const EmployeeSchema = new mongoose.Schema(
   {
     name: String,
-    emailAddress: String,
-    picture_url: String,
-    jobTitle: String,
+    email: String,
+    pictureUrl: String,
+    title: String,
     department: String,
     location: String,
   },
