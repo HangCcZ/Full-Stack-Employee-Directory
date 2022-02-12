@@ -1,6 +1,6 @@
 export default function () {
   return (
-    <div className="flex w-1/2 items-center rounded-xl border-2 border-slate-200 bg-gray-100 p-2  text-center focus-within:ring-2 focus-within:ring-blue-400 hover:ring-2 ">
+    <div className="mx-auto flex w-10/12 justify-center rounded-xl border-2 border-slate-200 bg-gray-100 p-2 text-center  focus-within:ring-2 focus-within:ring-blue-400 hover:ring-2 md:w-2/3 ">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="h-5 w-5"
