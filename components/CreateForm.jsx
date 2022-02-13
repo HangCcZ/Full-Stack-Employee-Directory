@@ -1,9 +1,12 @@
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/router'
+import { useState } from 'react'
 import axios from 'axios'
 
 export default function CreateForm({ preloaded, isNew }) {
   const router = useRouter()
+  const [imageSrc, setImageSrc] = useState(null)
+  const [isNewPicture, setIsNewPicture] = useState(false)
 
   const {
     register,
@@ -14,11 +17,25 @@ export default function CreateForm({ preloaded, isNew }) {
     defaultValues: preloaded ? preloaded : {},
   })
 
+  /**
+   * Update cover image preview after a new image is selected
+   * @param {file change event} event
+   */
+  const handleOnChange = (event) => {
+    setImageSrc(() => URL.createObjectURL(event.target.files[0]))
+    setIsNewPicture(() => true)
+  }
+
+  /**
+   * Handling updating existing employee
+   * @param {updated employee data} data
+   * @returns
+   */
   const updateEmployee = async (data) => {
     const { id } = router.query
     console.log(data.pictureUrl)
 
-    // data.pictureUrl will be type of object (FileList) if image is replaced
+    // data.pictureUrl will be type of object (FileList) if image is updated
     if (typeof data.pictureUrl != 'string') {
       try {
         const formData = new FormData()
@@ -55,6 +72,11 @@ export default function CreateForm({ preloaded, isNew }) {
     }
   }
 
+  /**
+   * Handling creating new employee
+   * @param {new employee data} data
+   * @returns
+   */
   const createEmployee = async (data) => {
     const formData = new FormData()
     for (const file of data.pictureUrl) {
@@ -92,75 +114,165 @@ export default function CreateForm({ preloaded, isNew }) {
     }
   }
 
+  /**
+   * Trigger http request based on form's purpose
+   * @param {data}
+   * @returns
+   */
   const onSubmit = async (data) => {
-    if (preloaded != {}) return updateEmployee(data)
+    if (!isNew) return updateEmployee(data)
     else return createEmployee(data)
   }
 
-  //TODO: Need to add style
   return (
-    <div className="mt-4 sm:mt-0">
+    <div className="mt-4 min-h-screen text-left sm:mt-0">
       <div className="md:grid md:grid-cols-3 md:gap-6">
         <div className="md:col-span-1">
-          <div className="md:col-span-1">
-            <div className="px-4 sm:px-0">
-              <h3 className="text-lg font-medium leading-6 text-gray-900">
-                Employee Information
-              </h3>
-              <p className="mt-1 text-sm text-gray-600">
-                Create a new profile for
-              </p>
-            </div>
+          <div className="px-4 sm:px-2">
+            <h3 className="text-lg font-medium leading-6 text-gray-900">
+              Employee Information
+            </h3>
+            <p className="mt-1 text-sm text-gray-600">
+              Create a new profile for your collegue
+            </p>
           </div>
         </div>
-        <div>
+        <div className="mt-5 md:col-span-2 md:mt-0">
           <form onSubmit={handleSubmit(onSubmit)}>
-            <input
-              className="outline-none"
-              type="text"
-              placeholder="Full Name"
-              {...register('name', { required: true, maxLength: 80 })}
-            />
-            <input
-              type="text"
-              className="outline-none"
-              placeholder="Email"
-              {...register('email', { required: true, pattern: /^\S+@\S+$/i })}
-            />
-            <input
-              type="text"
-              className="outline-none"
-              placeholder="Title"
-              {...register('title', { required: true })}
-            />
-            <input
-              type="text"
-              className="outline-none"
-              placeholder="Department"
-              {...register('department', { required: true })}
-            />
-            <input
-              type="file"
-              {...register('pictureUrl', {
-                required: preloaded ? false : true,
-              })}
-            ></input>
-            <input
-              type="text"
-              className="outline-none"
-              placeholder="Location"
-              {...register('location', { required: true })}
-            />
-            {!isNew ? (
-              <img
-                className="h-10 w-10 rounded-full"
-                src={preloaded.pictureUrl}
-                alt="employee thumbnail"
-              />
-            ) : (
-              console.log(register.pictureUrl)
-            )}
-            <button type="submit">Submit</button>
+            <div className="overflow-hidden shadow sm:rounded-md">
+              <div className="bg-white px-4 py-5 sm:p-6">
+                <div className="grid grid-cols-6 gap-6">
+                  <div className="col-span-6 sm:col-span-3">
+                    <label
+                      htmlFor="first-name"
+                      className=" block text-sm font-medium text-gray-700"
+                    >
+                      First name
+                    </label>
+                    <input
+                      className="mt-1 block w-full rounded-md border border-gray-300 px-2 py-2 shadow-sm outline-none focus:border-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                      type="text"
+                      name="first-name"
+                      {...register('name', { required: true, maxLength: 80 })}
+                    />
+                  </div>
+
+                  <div className="col-span-6 sm:col-span-3">
+                    <label
+                      htmlFor="last-name"
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      Last name
+                    </label>
+                    <input
+                      type="text"
+                      name="last-name"
+                      id="last-name"
+                      autoComplete="family-name"
+                      className="mt-1 block w-full rounded-md border border-gray-300 px-2 py-2 shadow-sm outline-none focus:border-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                    />
+                  </div>
+
+                  <div className="col-span-6 sm:col-span-3">
+                    <label
+                      htmlFor="title"
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      Title
+                    </label>
+                    <input
+                      type="text"
+                      name="title"
+                      className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm outline-none focus:border-2 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+                      {...register('title', { required: true })}
+                    />
+                  </div>
+
+                  <div className="col-span-6 sm:col-span-3">
+                    <label
+                      htmlFor="department"
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      Department
+                    </label>
+                    <input
+                      type="text"
+                      className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm outline-none focus:border-2 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+                      {...register('department', { required: true })}
+                    />
+                  </div>
+                  <div className="col-span-6 sm:col-span-4">
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      Email
+                    </label>
+                    <input
+                      type="text"
+                      name="email"
+                      className="mt-1 block w-full rounded-md border border-gray-300 px-2 py-2 shadow-sm outline-none focus:border-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                      {...register('email', {
+                        required: true,
+                        pattern: /^\S+@\S+$/i,
+                      })}
+                    />
+                  </div>
+                  <div className="col-span-6 sm:col-span-2">
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      Location (City)
+                    </label>
+                    <input
+                      type="text"
+                      name="location"
+                      className="mt-1 block w-full rounded-md border border-gray-300 px-2 py-2 shadow-sm outline-none focus:border-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                      {...register('location', { required: true })}
+                    />
+                  </div>
+                  <div className="col-span-6 text-left sm:col-span-4">
+                    <label
+                      htmlFor="file"
+                      className="block text-left text-sm font-medium text-gray-700"
+                    >
+                      Cover Photo
+                    </label>
+                    <input
+                      type="file"
+                      className="mt-1 cursor-pointer rounded-md border border-gray-300 bg-white px-2 py-2  shadow-sm outline-none focus:border-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                      {...register('pictureUrl', {
+                        required: isNew ? true : false,
+                      })}
+                      onChange={handleOnChange}
+                    />
+
+                    {!isNew && !isNewPicture ? (
+                      <img
+                        className="ml-2 inline h-10 w-10 rounded-full"
+                        src={preloaded.pictureUrl}
+                        alt="employee thumbnail"
+                      />
+                    ) : isNewPicture ? (
+                      <img
+                        className="ml-2 inline h-10 w-10 rounded-full"
+                        src={imageSrc}
+                        alt="employee thumbnail"
+                      />
+                    ) : null}
+                  </div>
+                </div>
+              </div>
+              <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
+                <button
+                  type="submit"
+                  className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                >
+                  {isNew ? 'Create' : 'Save'}
+                </button>
+              </div>
+            </div>
           </form>
         </div>
       </div>
