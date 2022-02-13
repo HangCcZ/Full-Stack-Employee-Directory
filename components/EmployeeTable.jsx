@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 export default function EmployeeTable({ employees }) {
   const charLimit = 25
   return (
@@ -70,17 +72,18 @@ export default function EmployeeTable({ employees }) {
                         : employee.department}
                     </td>
                     <td className="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
-                      <a href="#" className="text-blue-600 hover:text-blue-900">
-                        View More
-                      </a>
+                      <Link href="htt">
+                        <a className="text-blue-600 hover:text-blue-900">
+                          View More
+                        </a>
+                      </Link>
                     </td>
                     <td className="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
-                      <a
-                        href="#"
-                        className="text-indigo-600 hover:text-indigo-900"
-                      >
-                        Edit
-                      </a>
+                      <Link href={`http://localhost:3000/${employee._id}/edit`}>
+                        <a className="text-indigo-600 hover:text-indigo-900">
+                          Edit
+                        </a>
+                      </Link>
                     </td>
                   </tr>
                 ))}
