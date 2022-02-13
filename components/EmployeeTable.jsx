@@ -38,7 +38,7 @@ export default function EmployeeTable({ employees }) {
               </thead>
               <tbody className="divide-y divide-gray-200 bg-white">
                 {employees.map((employee) => (
-                  <tr key={employee.email}>
+                  <tr key={employee._id}>
                     <td className="whitespace-nowrap px-6 py-4">
                       <div className="flex items-center">
                         <div className="h-10 w-10 flex-shrink-0">
