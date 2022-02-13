@@ -20,7 +20,7 @@ export default function Home() {
 
   return (
     <>
-      <main className="w-11/12 max-w-5xl flex-1 flex-col py-4 px-2 text-center sm:px-20">
+      <main className="w-11/12 max-w-5xl flex-1 flex-col py-4 px-2 text-center">
         <SearchBar />
         <EmployeeTable employees={data.data} />
         {/**TODO - minor issue:
