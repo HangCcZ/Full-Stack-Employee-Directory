@@ -1,17 +1,49 @@
 import { useForm } from 'react-hook-form'
+import { useRouter } from 'next/router'
 import axios from 'axios'
+
 export default function CreateForm() {
+  const router = useRouter()
+
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm()
+
   const onSubmit = async (data) => {
-    console.log(data)
-    // const response = await axios.post('./api/employees', data)
+    const formData = new FormData()
+    for (const file of data.pictureUrl) {
+      formData.append('file', file)
+    }
+    formData.append('upload_preset', 'postlight-uploads')
+
+    let cloudinaryData = null
+    try {
+      cloudinaryData = await axios.post(
+        'https://api.cloudinary.com/v1_1/doyzkjrey/image/upload',
+        formData
+      )
+      data.pictureUrl = cloudinaryData.data.url
+    } catch (error) {
+      //TODO: Triggle a fail notification
+      return <p>Error when uploading image </p>
+    }
+
+    try {
+      const response = await axios.post('./api/employees', data)
+      if (response.status == 201) {
+        router.push('/')
+        //TODO: Triggle a success notification
+      }
+    } catch (error) {
+      //TODO: Triggle a fail notification
+      return <p>Error when creating new employee profile </p>
+    }
   }
 
+  //TODO: Need to add style
   return (
     <div className="mt-4 sm:mt-0">
       <div className="md:grid md:grid-cols-3 md:gap-6">
@@ -33,26 +65,30 @@ export default function CreateForm() {
               className="outline-none"
               type="text"
               placeholder="Full Name"
-              {...register('Full Name', { required: true, maxLength: 80 })}
+              {...register('name', { required: true, maxLength: 80 })}
             />
             <input
               type="text"
               className="outline-none"
               placeholder="Email"
-              {...register('Email', { required: true, pattern: /^\S+@\S+$/i })}
+              {...register('email', { required: true, pattern: /^\S+@\S+$/i })}
             />
             <input
               type="text"
               className="outline-none"
               placeholder="Title"
-              {...register('Title', { required: true })}
+              {...register('title', { required: true })}
             />
             <input
               type="text"
               className="outline-none"
               placeholder="Department"
-              {...register('Department', { required: true })}
+              {...register('department', { required: true })}
             />
+            <input
+              type="file"
+              {...register('pictureUrl', { required: true })}
+            ></input>
             <input
               type="text"
               className="outline-none"
