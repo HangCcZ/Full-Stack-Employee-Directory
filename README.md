@@ -19,8 +19,10 @@
 - [ ] Server side pagination
 - [x] Frontend layout based on Figma file
 - [ ] Implement search for employees
-- [ ] Implement data grouping by department, title, location
-- [ ] Setup form for user creation, update and deletion
+- [ ] Implement data grouping(sorting) by department, title, location
+- [x] Form for employee creation
+- [ ] Form for employee update
+- [ ] Modal for employee deletion
 - [ ] Testing on Frontend
 - [ ] More testing on Backend, specifically pagination
 - [ ] Animation?
@@ -56,3 +58,4 @@
 ## References:
 
 - [EmployeeTable Component](https://tailwindui.com/components/application-ui/lists/tables)
+- [Upload Images to Cloudinary in React & Next.js](https://www.youtube.com/watch?v=7lhUsK-FxYI&ab_channel=ColbyFayock)
