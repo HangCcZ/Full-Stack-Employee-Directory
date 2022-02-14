@@ -69,3 +69,4 @@
 - [Upload Images to Cloudinary in React & Next.js](https://www.youtube.com/watch?v=7lhUsK-FxYI&ab_channel=ColbyFayock)
 - [Next.JS with MongoDB and Mongoose](https://github.com/vercel/next.js/blob/canary/examples/with-mongodb-mongoose/pages/api/pets/index.js)
 - [Server Side Pagination - Node.JS/MongoDb](https://www.bezkoder.com/node-js-mongodb-pagination/)
+- [Modal](https://www.creative-tim.com/learning-lab/tailwind-starter-kit/documentation/react/modals/regular)
