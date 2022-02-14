@@ -42,7 +42,7 @@ export default function EmployeeTable({ employees }) {
               </thead>
               <tbody className="divide-y divide-gray-200 bg-white">
                 {employees.map((employee) => (
-                  <EmployeeItem employee={employee} />
+                  <EmployeeItem employee={employee} key={employee._id} />
                 ))}
               </tbody>
             </table>
