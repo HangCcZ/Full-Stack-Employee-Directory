@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 export default function Modal({ id, name }) {
   const [showModal, setShowModal] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
+  const router = useRouter()
   const handleDelete = async () => {
     try {
       const response = await axios.delete(
