@@ -2,7 +2,7 @@ import dbConnect from '../../../lib/dbConnect'
 import Employee from '../../../models/Employee'
 
 /**API endpoint for single employee
- * http://localhost:3000/api/employees/id
+ * http://localhost:3000/api/employees/id/${id}
  */
 export default async function handler(req, res) {
   const {
