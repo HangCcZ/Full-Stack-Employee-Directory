@@ -15,7 +15,14 @@ export default function Home() {
   }
   if (!data & !error) {
     //TODO - minor issue: Add loading animate
-    return <div>Loading...</div>
+    return (
+      <div className="flex items-center justify-center">
+        <button type="button" class="bg-indigo-500" disabled>
+          <svg class="mr-3 h-5 w-5 animate-spin" viewBox="0 0 24 24"></svg>
+          Processing...
+        </button>
+      </div>
+    )
   }
 
   return (
@@ -23,9 +30,6 @@ export default function Home() {
       <main className="w-11/12 max-w-5xl flex-1 flex-col py-4 px-2 text-center">
         <SearchBar />
         <EmployeeTable employees={data.data} />
-        {/**TODO - minor issue:
-         * This PaginationGroup constrains the whole container,
-         * NarBar is expanded if PaginationGroup is not included*/}
         <PaginationGroup />
       </main>
     </>
