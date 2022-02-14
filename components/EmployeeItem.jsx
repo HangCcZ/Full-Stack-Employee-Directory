@@ -54,7 +54,7 @@ export default function EmployeeItem({ employee }) {
         </Link>
       </td>
       <td className="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
-        <Link href={`http://localhost:3000/${employee._id}/`}>
+        <Link href={`http://localhost:3000/${employee._id}`}>
           <button>
             <svg
               xmlns="http://www.w3.org/2000/svg"
