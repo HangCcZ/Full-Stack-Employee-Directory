@@ -1,7 +1,6 @@
-import Link from 'next/link'
+import EmployeeItem from './EmployeeItem'
 
 export default function EmployeeTable({ employees }) {
-  const charLimit = 25
   return (
     <div className="mt-6 flex flex-col">
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -30,62 +29,20 @@ export default function EmployeeTable({ employees }) {
                   </th>
                   {/**span need to be hidden or it will occupy spaces and destory the mobile view */}
                   <th scope="col">
-                    <span className="sr-only hidden">View More</span>
+                    <span className="sr-only hidden">Edit</span>
                   </th>
                   {/**span need to be hidden or it will occupy spaces and destory the mobile view*/}
                   <th scope="col">
-                    <span className="sr-only hidden">Edit</span>
+                    <span className="sr-only hidden">View More</span>
+                  </th>
+                  <th scope="col">
+                    <span className="sr-only hidden">Delete</span>
                   </th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200 bg-white">
                 {employees.map((employee) => (
-                  <tr key={employee._id}>
-                    <td className="whitespace-nowrap px-6 py-4">
-                      <div className="flex items-center">
-                        <div className="h-10 w-10 flex-shrink-0">
-                          <img
-                            className="h-10 w-10 rounded-full"
-                            src={employee.pictureUrl}
-                            alt="employee thumbnail"
-                          />
-                        </div>
-                        <div className="ml-4">
-                          <div className="text-sm font-medium text-gray-900">
-                            {employee.name}
-                          </div>
-                          <div className="text-sm text-gray-500">
-                            {employee.email}
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="w-10 whitespace-nowrap px-6 py-4 text-left text-sm text-gray-600">
-                      {employee.title.length > charLimit
-                        ? employee.title.substring(0, charLimit) + '...'
-                        : employee.title}
-                    </td>
-
-                    <td className="whitespace-nowrap px-6 py-4 text-left text-sm text-gray-500">
-                      {employee.department.length > charLimit
-                        ? employee.department.substring(0, charLimit) + '...'
-                        : employee.department}
-                    </td>
-                    <td className="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
-                      <Link href="htt">
-                        <a className="text-blue-600 hover:text-blue-900">
-                          View More
-                        </a>
-                      </Link>
-                    </td>
-                    <td className="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
-                      <Link href={`http://localhost:3000/${employee._id}/edit`}>
-                        <a className="text-indigo-600 hover:text-indigo-900">
-                          Edit
-                        </a>
-                      </Link>
-                    </td>
-                  </tr>
+                  <EmployeeItem employee={employee} />
                 ))}
               </tbody>
             </table>
