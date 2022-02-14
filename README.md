@@ -17,13 +17,13 @@
 - [x] Create general API endpoints: **/api/employees** and **/api/employees/id**
 - [x] Test general API endpoints: **/api/employees** and **/api/employees/id**
 - [x] Setup MongoDB database connectivity and Mongoose
-- [ ] Server side pagination
+- [x] Server side pagination
 - [x] Frontend layout based on Figma file
 - [ ] Implement search for employees
 - [ ] Implement data grouping(sorting) by department, title, location
 - [x] Form for employee creation
-- [ ] Form for employee update
-- [ ] Modal for employee deletion
+- [x] Form for employee update
+- [x] Modal for employee deletion
 - [ ] Testing on Frontend
 - [ ] More testing on Backend, specifically pagination
 - [ ] Animation?
