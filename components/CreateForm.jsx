@@ -1,6 +1,8 @@
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+import { mutate } from 'swr'
+import Link from 'next/link'
 import axios from 'axios'
 
 export default function CreateForm({ preloaded, isNew }) {
@@ -61,7 +63,7 @@ export default function CreateForm({ preloaded, isNew }) {
         `http://localhost:3000/api/employees/${id}`,
         data
       )
-      console.log(response)
+      mutate(`http://localhost:3000/api/employees/${id}`, data, false)
       if (response.status == 201) {
         router.push('/')
         //TODO: Triggle a success notification
@@ -152,7 +154,7 @@ export default function CreateForm({ preloaded, isNew }) {
                     <input
                       className="mt-1 block w-full rounded-md border border-gray-300 px-2 py-2 shadow-sm outline-none focus:border-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                       type="text"
-                      name="first-name"
+                      name="firstName"
                       {...register('name', { required: true, maxLength: 80 })}
                     />
                   </div>
@@ -166,9 +168,7 @@ export default function CreateForm({ preloaded, isNew }) {
                     </label>
                     <input
                       type="text"
-                      name="last-name"
-                      id="last-name"
-                      autoComplete="family-name"
+                      name="lastName"
                       className="mt-1 block w-full rounded-md border border-gray-300 px-2 py-2 shadow-sm outline-none focus:border-2 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                     />
                   </div>
@@ -254,20 +254,28 @@ export default function CreateForm({ preloaded, isNew }) {
                         src={preloaded.pictureUrl}
                         alt="employee thumbnail"
                       />
-                    ) : isNewPicture ? (
-                      <img
-                        className="ml-2 inline h-10 w-10 rounded-full"
-                        src={imageSrc}
-                        alt="employee thumbnail"
-                      />
-                    ) : null}
+                    ) : (
+                      isNewPicture && (
+                        <img
+                          className="ml-2 inline h-10 w-10 rounded-full"
+                          src={imageSrc}
+                          alt="employee thumbnail"
+                        />
+                      )
+                    )}
                   </div>
                 </div>
               </div>
+
               <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
+                <Link href="/">
+                  <button className="inline-flex justify-center rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                    Cancel
+                  </button>
+                </Link>
                 <button
                   type="submit"
-                  className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  className="ml-4 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 >
                   {isNew ? 'Create' : 'Save'}
                 </button>
