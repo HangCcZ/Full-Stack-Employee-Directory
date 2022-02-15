@@ -2,7 +2,7 @@ import dbConnect from '../../../lib/dbConnect'
 import Employee from '../../../models/Employee'
 
 const getPagination = (page, size) => {
-  const limit = size ? +size : 5
+  const limit = size ? +size : 10
   const offset = page ? page * limit : 0
   return { limit, offset }
 }
@@ -20,8 +20,7 @@ export default async function handler(req, res) {
       try {
         const result = await Employee.paginate({}, { limit, offset }) // find all employees from database
         const { docs: employees } = result
-        console.log(employees)
-        const metaData = {
+        const pageData = {
           totalEmployees: result.totalDocs,
           totalPages: result.totalPages,
           hasPrevPage: result.hasPrevPage,
@@ -29,9 +28,9 @@ export default async function handler(req, res) {
           prevPage: result.prevPage,
           nextPage: result.nextPage,
           currentPage: result.page,
+          limit,
         }
-        console.log(metaData.currentPage)
-        res.status(200).json({ success: true, data: employees, metaData })
+        res.status(200).json({ success: true, employees, pageData })
       } catch (error) {
         res.status(400).json({ success: false })
       }
