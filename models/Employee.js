@@ -2,7 +2,8 @@ import mongoose from 'mongoose'
 import mongoosePaginate from 'mongoose-paginate-v2'
 const EmployeeSchema = new mongoose.Schema(
   {
-    name: String,
+    firstName: String,
+    lastName: String,
     email: String,
     pictureUrl: String,
     title: String,
