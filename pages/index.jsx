@@ -2,7 +2,6 @@ import useSWR from 'swr'
 import SearchBar from '../components/SearchBar'
 import EmployeeTable from '../components/EmployeeTable'
 import PaginationGroup from '../components/PaginationGroup'
-import CreateForm from '../components/CreateForm'
 import { useRouter } from 'next/router'
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json())
@@ -35,8 +34,8 @@ export default function Home() {
     <>
       <main className="w-11/12 max-w-5xl flex-1 flex-col py-4 px-2 text-center">
         <SearchBar />
-        <EmployeeTable employees={data.data} />
-        <PaginationGroup />
+        <EmployeeTable employees={data.employees} />
+        <PaginationGroup pageData={data.pageData} />
       </main>
     </>
   )
