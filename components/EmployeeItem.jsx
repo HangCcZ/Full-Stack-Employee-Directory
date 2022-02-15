@@ -15,7 +15,7 @@ export default function EmployeeItem({ employee }) {
           </div>
           <div className="ml-4">
             <div className="text-sm font-medium text-gray-900">
-              {employee.name}
+              {employee.firstName + ' ' + employee.lastName}
             </div>
             <div className="text-sm text-gray-500">{employee.email}</div>
           </div>
