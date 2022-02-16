@@ -1,6 +1,7 @@
 import useSWR from 'swr'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { HOST } from '../config'
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
@@ -8,7 +9,10 @@ export default function EmployeeDetail() {
   const router = useRouter()
   const { id } = router.query
   // rename data to employee
-  const { data, error } = useSWR(id ? `/api/employees/${id}` : null, fetcher)
+  const { data, error } = useSWR(
+    id ? `${HOST}/api/employees/${id}` : null,
+    fetcher
+  )
   if (error) {
     return <p>Failed to load</p>
   }
@@ -41,7 +45,7 @@ export default function EmployeeDetail() {
                       First name
                     </h3>
                     <p className="mt-1 block w-full rounded-md border border-dashed border-gray-300 px-2 py-2 shadow-sm  sm:text-sm">
-                      {employeeInfo.name}
+                      {employeeInfo.firstName}
                     </p>
                   </div>
 
@@ -50,7 +54,7 @@ export default function EmployeeDetail() {
                       Last name
                     </h3>
                     <p className="mt-1 block w-full rounded-md border border-dashed border-gray-300 px-2 py-2 shadow-sm   sm:text-sm">
-                      {employeeInfo.name}
+                      {employeeInfo.lastName}
                     </p>
                   </div>
 
@@ -90,7 +94,7 @@ export default function EmployeeDetail() {
                 </div>
               </div>
               <div className="bg-gray-50 px-4 py-3 text-left sm:px-6">
-                <Link href="/">
+                <Link href={`${HOST}/`}>
                   <a className="inline-flex justify-center rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                     Back
                   </a>
