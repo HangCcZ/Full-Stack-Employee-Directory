@@ -7,28 +7,50 @@
 - Figma (App layout planning)
 - TailWindCSS (Styling)
 - React Hook Form (Form entries handling and validation)
-- Playwright (Testing)
+- Playwright (Testing, never used, manually tested all the features instead)
 - Postman (Backend API testing)
 - SWR (Client side fetching and caching)
 - Cloudinary (Image storage and upload)
 
-## Todo and Completed
+## Suggested Features by the Coding Challenge - Completed and Missing
 
-- [x] Create general API endpoints: **/api/employees** and **/api/employees/id**
-- [x] Test general API endpoints: **/api/employees** and **/api/employees/id**
-- [x] Setup MongoDB database connectivity and Mongoose
-- [x] Server side pagination
-- [x] Frontend layout based on Figma file
-- [ ] Implement search for employees
-- [ ] Implement data grouping(sorting) by department, title, location
-- [x] Form for employee creation
-- [x] Form for employee update
-- [x] Modal for employee deletion
-- [ ] Testing on Frontend
-- [ ] More testing on Backend, specifically pagination
-- [ ] Animation?
+### Features that are completed:
+
+- [x] Setup instructions and notes on how you built the application.
+- [x] Use of a frontend framework, ideally React. (Used Next.JS)
+- [x] Modern API, we commonly use Node in-house. (Used Next.JS API feature)
+- [x] Use of a client-side router. (Used 'use-router' and 'Link' from Next.JS)
+- [x] Paginated lists. (Used server side pagination using Mongoose-Paginate-v2)
+- [x] Forms for creating, updating, and deleting employees (All completed)
+- [x] Source data from a third party person API (Wrote a snippet to consume this data, the data was then 'POST' to MongoDB as sample dataset for the backend)
+- [x] Ability to search for employees (Completed with support of pagination)
+
+### Features that are missing:
+
+- [ ] Ability to display employees by department, title, location, etc. (This can be done by sorting the data)
+- [ ] Creative use of animation (This feature was not a top priority when building the application, animation to show loading state would be great to have)
+- [ ] Testing (Manually tested backend API with Postman, manually tested frontend by making sure completed features work as intended)
+
+## How to make it better:
+
+1. Testing!
+2. Add animation!
+3. Improve website's accessibility
+4. Add notification to show the API responses
+5. Add code to handle pagination when there are many pages (current pagination UI only work well when totalpages is less than 7)
+6. Sorting based on department, title, name etc
+7. Searching based on some other constrains
+8. Add form validation on inputs
 
 ## Setup Instructions:
+
+1. Clone this repository by running `git clone https://github.com/HangCcZ/Code-Challenge-for-Postlight.git`
+2. Rename the `.env.example` file to `.env.local` in project root directory to store environment variables. This file is having two variables called `MONGODB_URI` and `LOCALHOST_NAME`
+3. Create a (MongoDB)[https://www.mongodb.com/] account, create a new database and wait for database provising (this may take few minutes)... After newly created database is ready, click **connect**, select **Connect your application**, make sure that the driver for is **Node.js**, copy and paste the connection string and assign it to the `MONGODB_URI` in `.env.local`. For example: `MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.2w7rv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
+4. In the terminal, run `npm install` and wait for completion
+5. Run `npm run dev` in the terminal
+6. Assigned the local website address of this application to `LOCALHOST_NAME` in `.env.local`. For example. `LOCALHOST_NAME = http://localhost:3000`
+7. Add sample dataset as you wish, manually via UI, Postman, or other method.
 
 ## Notes on how I built the application:
 
@@ -38,9 +60,10 @@
 
 - **API**: I decided to use the API feature in Next.js to build the backend to avoid hosting a dedicated backend. I do not have much experience with this API feature but wanted to try it out.
 - **Database**: I decided to use MongoDB and Mongoose since I had great experience using this particular combination in the past and they are great for rapid prototyping like this.
+- **Sample DataSet**: I used `https://randomuser.me` to get the sample data, cleaned them and upload them to MongoDB via POST.
 - **Pagination**: I initially thought about client-side pagination but thought it might not be scalable, what if the sample company became the top company and hired 100,000 employee someday. As a result, I decided to go with servr-side pagination. It's new to me but I wanted to try it out.
 - **Setup the API and MongoDB / Mongoose**: Pretty straight forward, I looked up an [example](<(https://github.com/vercel/next.js/blob/canary/examples/with-mongodb-mongoose/pages/api/pets/index.js)>) from Next.js's repository and tweaked a little bit to fit this challenge.
-- **/api/employees/** API endpoints that handle GET, POST requests and pagination based on query string. I thought about client side pagination but it is not really scalable
+- **/api/employees/** API endpoints that handle GET, POST requests, searching, sorting and pagination based on query string. I thought about client side pagination but it is not really scalable
 - **/api/employees/[id]** API endpoint that handle GET, PUT and DELETE request on single entity
 
 #### Frontend:
@@ -56,8 +79,8 @@
   - 'PaginationGroup',
   - 'PageButton' in 'PaginationGroup', 'PrevButton' and 'NextButton' in PaginationGroup
 - **Forms**: Two forms are needed for create and edit functionalies. I used React Hook Forms to perform POST and PUT.
-- Use Clouindary to handle the image uploading process in employee profile creation
-- Need a notification/popup to show the results of create/delete/update
+- **Modal**: Use it to confirm employee deletion action
+- **Image Upload**: Clouindary to handle the image uploading process in employee profile creation
 
 ## Resources created:
 
