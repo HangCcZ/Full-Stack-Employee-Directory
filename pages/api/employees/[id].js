@@ -16,6 +16,7 @@ export default async function handler(req, res) {
     case 'GET':
       try {
         const employee = await Employee.findById(id) // find an employee by id
+        console.log(employee)
         if (!employee) {
           res.status(400).json({ success: false })
         }

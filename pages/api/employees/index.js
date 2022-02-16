@@ -10,15 +10,32 @@ const getPagination = (page, size) => {
 export default async function handler(req, res) {
   const { method } = req
   //title option can be add for searching later
-  const { page, size } = req.query
+  const { page, size, search } = req.query
   const { limit, offset } = getPagination(page - 1, size)
-  console.log(limit, offset)
+
+  const matchSearch = { $regex: search, $options: 'i' }
+  const filter = search
+    ? {
+        /**
+         * Filter from all properties, can be narrow down later
+         */
+        $or: [
+          { firstName: matchSearch },
+          { lastName: matchSearch },
+          { title: matchSearch },
+          { department: matchSearch },
+          { email: matchSearch },
+          { location: matchSearch },
+        ],
+      }
+    : {}
+
   await dbConnect()
 
   switch (method) {
     case 'GET':
       try {
-        const result = await Employee.paginate({}, { limit, offset }) // find all employees from database
+        const result = await Employee.paginate(filter, { limit, offset }) // find all employees from database
         const { docs: employees } = result
         const pageData = {
           totalEmployees: result.totalDocs,
