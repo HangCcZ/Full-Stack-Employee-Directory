@@ -6,7 +6,7 @@ export default function EmployeeItem({ employee }) {
   return (
     <tr key={employee._id}>
       <td className="whitespace-nowrap px-6 py-4">
-        <div className="flex items-center">
+        <div className="flex items-center text-left">
           <div className="h-10 w-10 flex-shrink-0">
             <img
               className="h-10 w-10 rounded-full"
