@@ -59,7 +59,10 @@ export default function CreateForm({ preloaded, isNew }) {
       /**TODO:
        * Absolute route is used here, need to replace in production
        */
-      const { data } = await axios.put(`${HOST}/api/employees/${id}`, data)
+      const { data } = await axios.put(
+        `${HOST}/api/employees/${id}`,
+        formFields
+      )
       mutate(`${HOST}/api/employees/${id}`, data.updateEmployee, false)
 
       if (response.status == 201) {
@@ -100,7 +103,7 @@ export default function CreateForm({ preloaded, isNew }) {
       /**TODO:
        * Absolute route is used here, need to replace in production
        */
-      const response = await axios.post(`${HOST}/api/employees/`, data)
+      const response = await axios.post(`${HOST}/api/employees/`, formFields)
       if (response.status == 201) {
         router.push({ HOST })
         //TODO: Triggle a success notification
