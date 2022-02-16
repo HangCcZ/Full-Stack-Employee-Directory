@@ -63,7 +63,7 @@ export default function CreateForm({ preloaded, isNew }) {
       mutate(`${HOST}/api/employees/${id}`, data.updateEmployee, false)
 
       if (response.status == 201) {
-        router.push('/')
+        router.push({ HOST })
         //TODO: Triggle a success notification
       }
     } catch (error) {
@@ -102,7 +102,7 @@ export default function CreateForm({ preloaded, isNew }) {
        */
       const response = await axios.post(`${HOST}/api/employees/`, data)
       if (response.status == 201) {
-        router.push('/')
+        router.push({ HOST })
         //TODO: Triggle a success notification
       }
     } catch (error) {
