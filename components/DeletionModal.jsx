@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { HOST } from '../config'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 
@@ -8,17 +9,13 @@ export default function Modal({ id, name }) {
   const router = useRouter()
   const handleDelete = async () => {
     try {
-      const response = await axios.delete(
-        `http://localhost:3000/api/employees/${id}`
-      )
-      console.log(response)
+      const response = await axios.delete(`${HOST}/api/employees/${id}`)
       if (response.status == 201) {
         setShowModal(false)
         router.push('/')
         //TODO: Triggle a success notification
       }
     } catch (error) {
-      console.log(error)
       //TODO: Triggle a fail notification
       setErrorMessage(
         () => 'Error occurs when deleting profile, please try again'
