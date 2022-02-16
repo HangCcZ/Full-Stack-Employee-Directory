@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { HOST } from '../config'
 export default function PaginationGroup({ pageData }) {
   const renderPageLinks = () => {
     const temp = new Array(pageData.totalPages).fill(0)
@@ -6,7 +7,10 @@ export default function PaginationGroup({ pageData }) {
     // simple case: render all links if totalPages is under 7
     if (pageData.totalPages <= 7) {
       return temp.map((element, index) => (
-        <Link href={`/?page=${index + 1}`} key={`/?page=${index + 1}`}>
+        <Link
+          href={`${HOST}/?page=${index + 1}`}
+          key={`${HOST}/?page=${index + 1}`}
+        >
           <a
             href="#"
             className={`${
@@ -29,29 +33,37 @@ export default function PaginationGroup({ pageData }) {
   return (
     <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
       <div className="flex flex-1 justify-between sm:hidden">
-        <a
-          href="#"
-          className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-        >
-          Previous
-        </a>
-        <a
-          href="#"
-          className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-        >
-          Next
-        </a>
+        {pageData.prevPage && (
+          <Link href={`${HOST}/?page=${pageData.prevPage}`}>
+            <a className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+              Previous
+            </a>
+          </Link>
+        )}
+        {pageData.nextPage && (
+          <Link href={`${HOST}/?page=${pageData.nextPage}`}>
+            <a className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+              Next
+            </a>
+          </Link>
+        )}
       </div>
       <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
         <div>
           <p className="text-sm text-gray-700">
             Showing{' '}
             <span className="font-medium">
-              {pageData.currentPage * pageData.limit - (pageData.limit - 1)}
+              {Math.min(
+                pageData.currentPage * pageData.limit - (pageData.limit - 1),
+                pageData.totalEmployees
+              )}
             </span>{' '}
             to{' '}
             <span className="font-medium">
-              {pageData.limit * pageData.currentPage}
+              {Math.min(
+                pageData.limit * pageData.currentPage,
+                pageData.totalEmployees
+              )}
             </span>{' '}
             of <span className="font-medium">{pageData.totalEmployees}</span>{' '}
             results
@@ -62,7 +74,6 @@ export default function PaginationGroup({ pageData }) {
             className="relative z-0 inline-flex -space-x-px rounded-md shadow-sm"
             aria-label="Pagination"
           >
-            {console.log(pageData.prevPage)}
             {pageData.prevPage && (
               <a
                 href="#"
@@ -89,7 +100,7 @@ export default function PaginationGroup({ pageData }) {
             {/* Current: "z-10 bg-indigo-50 border-indigo-500 text-indigo-600", Default: "bg-white border-gray-300 text-gray-500 hover:bg-gray-50" */}
             {renderPageLinks()}
             {pageData.nextPage && (
-              <Link href={`/?page=${pageData.nextPage}`}>
+              <Link href={`${HOST}/?page=${pageData.nextPage}`}>
                 <a
                   href="#"
                   className="relative inline-flex items-center rounded-r-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50"
