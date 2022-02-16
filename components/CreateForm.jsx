@@ -66,7 +66,7 @@ export default function CreateForm({ preloaded, isNew }) {
       mutate(`${HOST}/api/employees/${id}`, data.updateEmployee, false)
 
       if (response.status == 201) {
-        router.push({ HOST })
+        router.push(`{HOST}`)
         //TODO: Triggle a success notification
       }
     } catch (error) {
@@ -104,7 +104,6 @@ export default function CreateForm({ preloaded, isNew }) {
        * Absolute route is used here, need to replace in production
        */
       const response = await axios.post(`${HOST}/api/employees/`, formFields)
-      console.log(response)
       if (response.status == 201) {
         router.push(`${HOST}`)
         //TODO: Triggle a success notification
