@@ -29,7 +29,7 @@ export default function Home() {
   }, fetcher)
 
   if (error) {
-    router.push('/')
+    return <p>Failed to load data, please try again</p>
   }
 
   if (!data & !error) {
