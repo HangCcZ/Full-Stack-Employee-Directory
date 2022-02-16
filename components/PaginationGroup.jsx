@@ -12,7 +12,6 @@ export default function PaginationGroup({ pageData }) {
           key={`${HOST}/?page=${index + 1}`}
         >
           <a
-            href="#"
             className={`${
               pageData.currentPage == index + 1
                 ? 'z-10 border-indigo-500 bg-indigo-50 text-indigo-600'
@@ -75,26 +74,25 @@ export default function PaginationGroup({ pageData }) {
             aria-label="Pagination"
           >
             {pageData.prevPage && (
-              <a
-                href="#"
-                className="relative inline-flex items-center rounded-l-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50"
-              >
-                <span className="sr-only">Previous</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 19l-7-7 7-7"
-                  />
-                </svg>
-              </a>
+              <Link href={`${HOST}/?page=${pageData.prevPage}`}>
+                <a className="relative inline-flex items-center rounded-l-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50">
+                  <span className="sr-only">Previous</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M15 19l-7-7 7-7"
+                    />
+                  </svg>
+                </a>
+              </Link>
             )}
 
             {/* Current: "z-10 bg-indigo-50 border-indigo-500 text-indigo-600", Default: "bg-white border-gray-300 text-gray-500 hover:bg-gray-50" */}
