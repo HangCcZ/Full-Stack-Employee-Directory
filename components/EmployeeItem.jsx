@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import DeletionModal from './DeletionModal'
+import { HOST } from '../config'
 export default function EmployeeItem({ employee }) {
   const charLimit = 25
   return (
@@ -33,7 +34,7 @@ export default function EmployeeItem({ employee }) {
           : employee.department}
       </td>
       <td className="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
-        <Link href={`http://localhost:3000/${employee._id}/edit`}>
+        <Link href={`${HOST}/${employee._id}/edit`}>
           <button aria-label="edit-button">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -54,7 +55,7 @@ export default function EmployeeItem({ employee }) {
         </Link>
       </td>
       <td className="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
-        <Link href={`http://localhost:3000/${employee._id}`}>
+        <Link href={`${HOST}/${employee._id}`}>
           <button>
             <svg
               xmlns="http://www.w3.org/2000/svg"
