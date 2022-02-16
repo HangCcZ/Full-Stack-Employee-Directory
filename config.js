@@ -7,7 +7,6 @@ if (env == 'development') {
   HOST = process.env.NEXT_PUBLIC_PRODUCTION_HOST
 }
 
-console.log(process.env.NEXT_PUBLIC_LOCALHOST_NAME)
 module.exports = {
   HOST,
 }
