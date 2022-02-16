@@ -18,11 +18,15 @@
 
 1. Clone this repository by running `git clone https://github.com/HangCcZ/Code-Challenge-for-Postlight.git`
 2. Rename the `.env.example` file to `.env.local` in project root directory to store environment variables. This file is having two variables called `MONGODB_URI` and `LOCALHOST_NAME`
-3. Create a (MongoDB)[https://www.mongodb.com/] account, create a new database and wait for database provising (this may take few minutes)... After newly created database is ready, click **connect**, select **Connect your application**, make sure that the driver for is **Node.js**, copy and paste the connection string and assign it to the `MONGODB_URI` in `.env.local`. For example: `MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.2w7rv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`. Make sure to whitelist your IP address in **Security-> Network Access**.
-4. In the terminal, run `npm install` and wait for completion
-5. Run `npm run dev` in the terminal
-6. Assigned the local website address of this application to `LOCALHOST_NAME` in `.env.local`. For example. `LOCALHOST_NAME = http://localhost:3000`
-7. Add sample dataset as you wish, manually via UI, Postman, or other method.
+3. Create a (MongoDB)[https://www.mongodb.com/] account, create a new database and wait for database provising (this may take few minutes)...
+    1. After newly created database is ready, click **connect**
+    2. Select **Connect your application**, make sure that the driver for is **Node.js**. 
+    3. Copy and paste the connection string and assign it to the `MONGODB_URI` in `.env.local`. For example: `MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.2w7rv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`. 
+    4. Make sure to whitelist your IP address in **Security-> Network Access**.
+5. In the terminal, run `npm install` and wait for completion
+6. Run `npm run dev` in the terminal
+7. Assigned the local website address of this application to `LOCALHOST_NAME` in `.env.local`. For example. `LOCALHOST_NAME = http://localhost:3000`
+8. Add sample dataset as you wish, manually via UI, Postman, or other method.
 
 ## Suggested Features by the Coding Challenge - Completed and Missing
 
