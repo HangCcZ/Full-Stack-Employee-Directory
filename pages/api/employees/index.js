@@ -1,5 +1,15 @@
 import dbConnect from '../../../lib/dbConnect'
 import Employee from '../../../models/Employee'
+import Cors from 'cors'
+import initMiddleware from '../../../lib/init-middleware'
+
+const cors = initMiddleware(
+  // You can read more about the available options here: https://github.com/expressjs/cors#configuration-options
+  Cors({
+    // Only allow requests with GET, POST and OPTIONS
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  })
+)
 
 const getPagination = (page, size) => {
   const limit = size ? +size : 10
@@ -8,6 +18,8 @@ const getPagination = (page, size) => {
 }
 
 export default async function handler(req, res) {
+  await cors(req, res)
+
   const { method } = req
   //title option can be add for searching later
   const { page, size, search } = req.query

@@ -1,10 +1,22 @@
 import dbConnect from '../../../lib/dbConnect'
 import Employee from '../../../models/Employee'
+import Cors from 'cors'
+import initMiddleware from '../../../lib/init-middleware'
+
+// Initialize the cors middleware
+const cors = initMiddleware(
+  // You can read more about the available options here: https://github.com/expressjs/cors#configuration-options
+  Cors({
+    // Only allow requests with GET, POST and OPTIONS
+    methods: ['GET', 'POST', 'OPTIONS'],
+  })
+)
 
 /**API endpoint for single employee
  * http://localhost:3000/api/employees/id/${id}
  */
 export default async function handler(req, res) {
+  await cors(req, res)
   const {
     query: { id }, // extra id in url query
     method,
