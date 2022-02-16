@@ -11,7 +11,7 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json())
 export default function Home() {
   const [searchValue, setSearchValue] = useState('')
   const router = useRouter()
-  console.log('what is the host? ', HOST)
+
   /**TODO:
    * need to handle query that makes no sense, for example /?page=100
    * when there are only 10 pages total
