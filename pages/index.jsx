@@ -5,6 +5,7 @@ import EmployeeTable from '../components/EmployeeTable'
 import PaginationGroup from '../components/PaginationGroup'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+import ListAnimation from '../components/ListAnimation'
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
@@ -34,12 +35,11 @@ export default function Home() {
 
   if (!data & !error) {
     //TODO - minor issue: Add loading animate
+
     return (
-      <div className="flex items-center justify-center">
-        <button type="button" className="bg-indigo-500" disabled>
-          <svg className="mr-3 h-5 w-5 animate-spin" viewBox="0 0 24 24"></svg>
-          Processing...
-        </button>
+      <div className='className="w-11/12 max-w-5xl flex-1 flex-col py-4 px-2 text-center'>
+        <SearchBar searchValue={searchValue} setSearchValue={setSearchValue} />
+        <ListAnimation />
       </div>
     )
   }
