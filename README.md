@@ -1,5 +1,7 @@
 # Solution for Postlight Code Challenge - by Hang Chen
 
+## Checkout deployed version [here](https://code-challenge-for-postlight.vercel.app)
+
 ## Technologies and libraries used:
 
 - Next.js (Frontend and API)
