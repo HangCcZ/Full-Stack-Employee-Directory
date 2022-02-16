@@ -31,7 +31,7 @@ export default function CreateForm({ preloaded, isNew }) {
 
   /**
    * Handling updating existing employee
-   * @param {updated employee data} data
+   * @param {updated employee data} formFields
    * @returns
    */
   const updateEmployee = async (formFields) => {
@@ -104,8 +104,9 @@ export default function CreateForm({ preloaded, isNew }) {
        * Absolute route is used here, need to replace in production
        */
       const response = await axios.post(`${HOST}/api/employees/`, formFields)
+      console.log(response)
       if (response.status == 201) {
-        router.push({ HOST })
+        router.push(`${HOST}`)
         //TODO: Triggle a success notification
       }
     } catch (error) {
@@ -273,7 +274,7 @@ export default function CreateForm({ preloaded, isNew }) {
               </div>
 
               <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
-                <Link href="/">
+                <Link href={`${HOST}`}>
                   <button className="inline-flex justify-center rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                     Cancel
                   </button>
