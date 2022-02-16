@@ -39,7 +39,7 @@
 4. Add notification to show the API responses
 5. Add code to handle pagination when there are many pages (current pagination UI only work well when totalpages is less than 7)
 6. Sorting based on department, title, name etc
-7. Searching based on some other constrains
+7. Searching based on some other constrains eg: department, title, name
 8. Add form validation on inputs
 9. Add authentication and authorization
 
