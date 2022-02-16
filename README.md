@@ -82,6 +82,12 @@
 - **Modal**: Use it to confirm employee deletion action
 - **Image Upload**: Clouindary to handle the image uploading process in employee profile creation
 
+## Things I forgot to do before deploying to Vercel:
+
+- Whitelist access on MongoDB
+- Error handling in ./pages/index caused infinite loop because `router.push(/)` is called when error occur
+- CORS is not enabled.
+
 ## Resources created:
 
 - [Frontend Layout using Figma](https://www.figma.com/file/QtY5OKXeMUcxx1cH1uZFhj/Employee-Directory---Postlight?node-id=0%3A1)
