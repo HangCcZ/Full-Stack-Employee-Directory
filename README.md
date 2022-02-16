@@ -83,11 +83,12 @@
 - **Modal**: Use it to confirm employee deletion action
 - **Image Upload**: Clouindary to handle the image uploading process in employee profile creation
 
-## Things I forgot to do before deploying to Vercel:
+## Things I didn't know before deploying to Vercel:
 
 - Whitelist access on MongoDB
 - Error handling in ./pages/index caused infinite loop because `router.push(/)` is called when error occur
 - CORS is not enabled.
+- Environmental variables need to start with `NEXT_PUBLIC_` for deployed frontend to access them
 
 ## Resources created:
 
