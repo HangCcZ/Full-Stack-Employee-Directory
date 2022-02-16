@@ -31,7 +31,7 @@
 - [ ] Creative use of animation (This feature was not a top priority when building the application, animation to show loading state would be great to have)
 - [ ] Testing (Manually tested backend API with Postman, manually tested frontend by making sure completed features work as intended)
 
-## How to make it better:
+## How to make it better in production:
 
 1. Testing!
 2. Add animation!
@@ -41,6 +41,7 @@
 6. Sorting based on department, title, name etc
 7. Searching based on some other constrains
 8. Add form validation on inputs
+9. Add authentication and authorization
 
 ## Setup Instructions:
 
