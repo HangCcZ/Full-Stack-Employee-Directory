@@ -2,6 +2,7 @@ import useSWR from 'swr'
 import CreateForm from '../../components/CreateForm'
 import { useRouter } from 'next/router'
 import { HOST } from '../../config'
+import EditAnimation from '../../components/EditAnimation'
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
@@ -18,7 +19,11 @@ export default function Edit() {
   }
 
   if (!data) {
-    return <p>Loading...</p>
+    return (
+      <div className="w-11/12 max-w-5xl flex-1 flex-col py-4 px-2 text-center sm:px-20">
+        <EditAnimation />
+      </div>
+    )
   }
 
   const employeeInfo = data.data
