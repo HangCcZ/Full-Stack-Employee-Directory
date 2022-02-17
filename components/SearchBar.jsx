@@ -23,11 +23,11 @@ export default function ({ searchValue = '', setSearchValue }) {
      * inspired by amazon.com
      * dropdown --- searchInput --- searchIcon --- sort by
      */
-    <div className="mx-auto flex w-10/12 justify-center rounded-xl border-2 border-slate-200 bg-gray-100 p-2 text-center  focus-within:ring-2 focus-within:ring-blue-400 hover:ring-2 md:w-2/3 ">
+    <div className="mx-auto flex w-10/12 justify-center rounded-xl border-2 border-slate-200 bg-gray-100 p-2 text-center  focus-within:ring-2 focus-within:ring-blue-400 hover:shadow-lg hover:ring-2 md:w-2/3">
       <button onClick={handleSearchClick}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-5 w-5"
+          className="h-6 w-6"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
