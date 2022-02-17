@@ -37,7 +37,7 @@ export default function Home() {
     //TODO - minor issue: Add loading animate
 
     return (
-      <div className='className="w-11/12 max-w-5xl flex-1 flex-col py-4 px-2 text-center'>
+      <div className="w-11/12 max-w-5xl flex-1 flex-col py-4 px-2 text-center">
         <SearchBar searchValue={searchValue} setSearchValue={setSearchValue} />
         <ListAnimation />
       </div>
@@ -51,6 +51,7 @@ export default function Home() {
       <main className="w-11/12 max-w-5xl flex-1 flex-col py-4 px-2 text-center">
         <SearchBar searchValue={searchValue} setSearchValue={setSearchValue} />
         <EmployeeTable employees={employees} />
+
         <PaginationGroup pageData={pageData} />
       </main>
     </>
