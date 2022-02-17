@@ -30,12 +30,13 @@ export default function Home() {
   }, fetcher)
 
   if (error) {
+    /**
+     * Add a error page
+     */
     return <p>Failed to load data, please try again</p>
   }
 
   if (!data & !error) {
-    //TODO - minor issue: Add loading animate
-
     return (
       <div className="w-11/12 max-w-5xl flex-1 flex-col py-4 px-2 text-center">
         <SearchBar searchValue={searchValue} setSearchValue={setSearchValue} />
