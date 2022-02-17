@@ -1,5 +1,6 @@
 import useSWR from 'swr'
 import Link from 'next/link'
+import EmployeeDetailAnimation from './EmployeeDetailAnimation'
 import { useRouter } from 'next/router'
 import { HOST } from '../config'
 
@@ -18,7 +19,7 @@ export default function EmployeeDetail() {
   }
 
   if (!data) {
-    return <p>Loading...</p>
+    return <EmployeeDetailAnimation />
   }
 
   const employeeInfo = data.data
