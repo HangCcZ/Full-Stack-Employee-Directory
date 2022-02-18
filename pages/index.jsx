@@ -24,6 +24,8 @@ export default function Home() {
       return `${HOST}/api/employees/?page=${router.query.page}`
     } else if (router.query.search) {
       return `${HOST}/api/employees/?search=${router.query.search}`
+    } else if (router.query.sort) {
+      return `${HOST}/api/employees/?sort=${router.query.sort}&asce=true`
     } else {
       return `${HOST}/api/employees`
     }
