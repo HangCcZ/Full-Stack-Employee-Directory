@@ -10,7 +10,7 @@ export default function CreateForm({ preloaded, isNew }) {
   const router = useRouter()
   const [imageSrc, setImageSrc] = useState(null)
   const [isNewPicture, setIsNewPicture] = useState(false)
-
+  const { requestLoading, setRequestLoading } = useState(false)
   const {
     register,
     handleSubmit,
@@ -37,7 +37,7 @@ export default function CreateForm({ preloaded, isNew }) {
   const updateEmployee = async (formFields) => {
     const { id } = router.query
     // data.pictureUrl will be type of object (FileList) if image is updated
-
+    setRequestLoading(() => true)
     if (typeof formFields.pictureUrl != 'string') {
       try {
         const formData = new FormData()
@@ -64,9 +64,9 @@ export default function CreateForm({ preloaded, isNew }) {
         formFields
       )
       mutate(`${HOST}/api/employees/${id}`, data.updateEmployee, false)
-
+      setRequestLoading(() => false)
       if (response.status == 201) {
-        router.push(`{HOST}`)
+        router.push(`${HOST}`)
         //TODO: Triggle a success notification
       }
     } catch (error) {
@@ -81,6 +81,7 @@ export default function CreateForm({ preloaded, isNew }) {
    * @returns
    */
   const createEmployee = async (formFields) => {
+    setRequestLoading(() => true)
     const formData = new FormData()
     for (const file of formFields.pictureUrl) {
       formData.append('file', file)
@@ -104,6 +105,7 @@ export default function CreateForm({ preloaded, isNew }) {
        * Absolute route is used here, need to replace in production
        */
       const response = await axios.post(`${HOST}/api/employees/`, formFields)
+      setRequestLoading(() => false)
       if (response.status == 201) {
         router.push(`${HOST}`)
         //TODO: Triggle a success notification
@@ -280,7 +282,7 @@ export default function CreateForm({ preloaded, isNew }) {
                 </Link>
                 <button
                   type="submit"
-                  className="ml-4 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  className={`ml-4 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2`}
                 >
                   {isNew ? 'Create' : 'Save'}
                 </button>
