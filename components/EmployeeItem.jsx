@@ -76,7 +76,10 @@ export default function EmployeeItem({ employee }) {
         </Link>
       </td>
       <td className="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
-        <DeletionModal id={employee._id} name={employee.name} />
+        <DeletionModal
+          id={employee._id}
+          name={`${employee.firstName}  ${employee.lastName}`}
+        />
       </td>
     </tr>
   )
