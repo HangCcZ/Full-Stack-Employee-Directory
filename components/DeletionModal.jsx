@@ -101,8 +101,9 @@ export default function Modal({ id, name }) {
                 {/*body*/}
                 <div className="relative flex-auto p-6">
                   <p className="my-4 text-lg leading-relaxed text-gray-700">
-                    {`You are deleting ${name}'s profile. Click delete button to
-                    confirm this action.`}
+                    You are deleting{' '}
+                    <span className="text-blue-500">{name}'s</span> profile.
+                    Click delete button to confirm this action.
                   </p>
                 </div>
                 {/*footer*/}
