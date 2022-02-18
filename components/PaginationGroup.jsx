@@ -6,6 +6,10 @@ export default function PaginationGroup({ pageData }) {
 
     // simple case: render all links if totalPages is under 7
     if (pageData.totalPages <= 7) {
+      /**
+       * TODO: need to propagte sorting criteria to here
+       *
+       */
       return temp.map((element, index) => (
         <Link
           href={`${HOST}/?page=${index + 1}`}
