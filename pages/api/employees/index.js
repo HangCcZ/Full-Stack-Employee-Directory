@@ -22,8 +22,14 @@ export default async function handler(req, res) {
 
   const { method } = req
   //title option can be add for searching later
-  const { page, size, search } = req.query
+  const { page, size, search, sort, asce } = req.query
+
   const { limit, offset } = getPagination(page - 1, size)
+
+  const sortBy =
+    sort && (sort == 'lastName' || sort == 'title' || sort == 'department')
+      ? { [sort]: asce ? 1 : -1 }
+      : {}
 
   const matchSearch = { $regex: search, $options: 'i' }
   const filter = search
@@ -47,7 +53,12 @@ export default async function handler(req, res) {
   switch (method) {
     case 'GET':
       try {
-        const result = await Employee.paginate(filter, { limit, offset }) // find all employees from database
+        const result = await Employee.paginate(filter, {
+          limit,
+          offset,
+          sort: sortBy,
+        }) // find all employees from database
+
         const { docs: employees } = result
         const pageData = {
           totalEmployees: result.totalDocs,
