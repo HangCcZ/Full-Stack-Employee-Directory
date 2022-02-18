@@ -18,7 +18,7 @@ export default function Edit() {
     return <p>Failed to load</p>
   }
 
-  if (!data) {
+  if (!data && !error) {
     return (
       <div className="w-11/12 max-w-5xl flex-1 flex-col py-4 px-2 text-center sm:px-20">
         <EditAnimation />

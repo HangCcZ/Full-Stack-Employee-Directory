@@ -10,7 +10,8 @@ export default function CreateForm({ preloaded, isNew }) {
   const router = useRouter()
   const [imageSrc, setImageSrc] = useState(null)
   const [isNewPicture, setIsNewPicture] = useState(false)
-  const { requestLoading, setRequestLoading } = useState(false)
+  const [requestLoading, setRequestLoading] = useState(false)
+
   const {
     register,
     handleSubmit,
@@ -52,6 +53,7 @@ export default function CreateForm({ preloaded, isNew }) {
         formFields.pictureUrl = cloudinaryData.data.url
       } catch (error) {
         //TODO: Triggle a fail notification
+        setRequestLoading(() => false)
         return <p>Error when uploading image </p>
       }
     }
@@ -59,12 +61,14 @@ export default function CreateForm({ preloaded, isNew }) {
       /**TODO:
        * Absolute route is used here, need to replace in production
        */
-      const { data } = await axios.put(
+      const response = await axios.put(
         `${HOST}/api/employees/${id}`,
         formFields
       )
+      const { data } = response
       mutate(`${HOST}/api/employees/${id}`, data.updateEmployee, false)
       setRequestLoading(() => false)
+
       if (response.status == 201) {
         router.push(`${HOST}`)
         //TODO: Triggle a success notification
@@ -81,7 +85,7 @@ export default function CreateForm({ preloaded, isNew }) {
    * @returns
    */
   const createEmployee = async (formFields) => {
-    setRequestLoading(() => true)
+    setRequestLoading(true)
     const formData = new FormData()
     for (const file of formFields.pictureUrl) {
       formData.append('file', file)
@@ -97,6 +101,7 @@ export default function CreateForm({ preloaded, isNew }) {
       formFields.pictureUrl = cloudinaryData.data.url
     } catch (error) {
       //TODO: Triggle a fail notification
+      setRequestLoading(() => false)
       return <p>Error when uploading image </p>
     }
 
@@ -112,6 +117,7 @@ export default function CreateForm({ preloaded, isNew }) {
       }
     } catch (error) {
       //TODO: Triggle a fail notification
+      setRequestLoading(() => false)
       return <p>Error when creating new employee profile </p>
     }
   }
@@ -282,7 +288,9 @@ export default function CreateForm({ preloaded, isNew }) {
                 </Link>
                 <button
                   type="submit"
-                  className={`ml-4 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2`}
+                  className={`${
+                    requestLoading ? `animate-spin` : ''
+                  } ml-4 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2`}
                 >
                   {isNew ? 'Create' : 'Save'}
                 </button>
