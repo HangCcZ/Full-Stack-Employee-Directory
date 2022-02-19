@@ -11,6 +11,7 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
 export default function Home() {
   const [searchValue, setSearchValue] = useState('')
+  const [sortBy, setSortBy] = useState({ sort: 'lastName', asce: true })
   const router = useRouter()
 
   /**TODO:
@@ -53,7 +54,11 @@ export default function Home() {
     <>
       <main className="w-11/12 max-w-5xl flex-1 flex-col py-4 px-2 text-center">
         <SearchBar searchValue={searchValue} setSearchValue={setSearchValue} />
-        <EmployeeTable employees={employees} />
+        <EmployeeTable
+          employees={employees}
+          sortBy={sortBy}
+          setSortBy={setSortBy}
+        />
 
         <PaginationGroup pageData={pageData} />
       </main>
