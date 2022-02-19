@@ -4,6 +4,9 @@ import { HOST } from '../config'
 export default function ({ searchValue = '', setSearchValue }) {
   const router = useRouter()
 
+  /**
+   * Set focus on search bar after search is completed
+   */
   const handleSearchClick = () => {
     if (searchValue != '') {
       router.push(`${HOST}/?search=${searchValue}`)
@@ -11,9 +14,13 @@ export default function ({ searchValue = '', setSearchValue }) {
     }
   }
 
+  /**
+   * Set focus on search bar after search is completed
+   */
   const handleSearchEnter = (e) => {
     if (searchValue != '' && e.key === 'Enter') {
       router.push(`${HOST}/?search=${searchValue}`)
+      setSearchValue(() => searchValue)
     }
   }
 
