@@ -1,32 +1,49 @@
+/* eslint-disable brace-style */
+import { useRouter } from 'next/router'
 import EmployeeItem from './EmployeeItem'
+import { HOST } from '../config'
 
 export default function EmployeeTable({ employees, sortBy, setSortBy }) {
+  const router = useRouter()
   const onNameClick = () => {
     /**
      * If it is already sort by lastName, that means we want to flip the  
      ascending and descending.
      Else：sort by ascending -  A->Z
     */
-    if (sortBy.sort == 'lastName') {
+
+    /** TODO:
+     *  Rename "asce" to "order" instead
+     */
+    if (sortBy.sort === 'lastName') {
+      const asceOrder = !sortBy.asce
       setSortBy(() => ({ sort: sortBy.sort, asce: !sortBy.asce }))
+      router.push(`${HOST}/?sort=lastName&asce=${asceOrder}`)
     } else {
       setSortBy(() => ({ sort: 'lastName', asce: true }))
+      router.push(`${HOST}/?sort=lastName&asce=true`)
     }
   }
 
   const onTitleClick = () => {
-    if (sortBy.sort == 'title') {
+    if (sortBy.sort === 'title') {
+      const asceOrder = !sortBy.asce
       setSortBy(() => ({ sort: sortBy.sort, asce: !sortBy.asce }))
+      router.push(`${HOST}/?sort=title&asce=${asceOrder}`)
     } else {
       setSortBy(() => ({ sort: 'title', asce: true }))
+      router.push(`${HOST}/?sort=title&asce=true`)
     }
   }
 
   const onDepartmentClick = () => {
-    if (sortBy.sort == 'department') {
+    if (sortBy.sort === 'department') {
+      const asceOrder = !sortBy.asce
       setSortBy(() => ({ sort: sortBy.sort, asce: !sortBy.asce }))
+      router.push(`${HOST}/?sort=department&asce=${asceOrder}`)
     } else {
       setSortBy(() => ({ sort: 'department', asce: true }))
+      router.push(`${HOST}/?sort=department&asce=true`)
     }
   }
 
@@ -40,6 +57,7 @@ export default function EmployeeTable({ employees, sortBy, setSortBy }) {
                 <tr>
                   <th scope="col" className="px-6 py-3 text-left ">
                     <button
+                      type="button"
                       className="text-left text-xs font-medium uppercase tracking-wide text-gray-500"
                       onClick={onNameClick}
                     >
@@ -49,7 +67,7 @@ export default function EmployeeTable({ employees, sortBy, setSortBy }) {
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className={`h-5 w-5 ${
-                              sortBy.sort == 'lastName' && sortBy.asce == true
+                              sortBy.sort === 'lastName' && sortBy.asce === true
                                 ? 'stroke-slate-800'
                                 : 'stroke-slate-200'
                             }`}
@@ -67,7 +85,8 @@ export default function EmployeeTable({ employees, sortBy, setSortBy }) {
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className={`h-5 w-5 ${
-                              sortBy.sort == 'lastName' && sortBy.asce == false
+                              sortBy.sort === 'lastName' &&
+                              sortBy.asce === false
                                 ? 'stroke-slate-800'
                                 : 'stroke-slate-200'
                             }`}
@@ -88,6 +107,7 @@ export default function EmployeeTable({ employees, sortBy, setSortBy }) {
                   </th>
                   <th scope="col" className="px-6 py-3 text-left ">
                     <button
+                      type="button"
                       className="text-left text-xs font-medium uppercase tracking-wide text-gray-500"
                       onClick={onTitleClick}
                     >
@@ -97,7 +117,7 @@ export default function EmployeeTable({ employees, sortBy, setSortBy }) {
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className={`h-5 w-5 ${
-                              sortBy.sort == 'title' && sortBy.asce == true
+                              sortBy.sort === 'title' && sortBy.asce === true
                                 ? 'stroke-slate-800'
                                 : 'stroke-slate-200'
                             }`}
@@ -115,7 +135,7 @@ export default function EmployeeTable({ employees, sortBy, setSortBy }) {
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className={`h-5 w-5 ${
-                              sortBy.sort == 'title' && sortBy.asce == false
+                              sortBy.sort === 'title' && sortBy.asce === false
                                 ? 'stroke-slate-800'
                                 : 'stroke-slate-200'
                             }`}
@@ -136,6 +156,7 @@ export default function EmployeeTable({ employees, sortBy, setSortBy }) {
                   </th>
                   <th scope="col" className="px-6 py-3 text-left ">
                     <button
+                      type="button"
                       className="text-left text-xs font-medium uppercase tracking-wide text-gray-500"
                       onClick={onDepartmentClick}
                     >
@@ -145,7 +166,8 @@ export default function EmployeeTable({ employees, sortBy, setSortBy }) {
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className={`h-5 w-5 ${
-                              sortBy.sort == 'department' && sortBy.asce == true
+                              sortBy.sort === 'department' &&
+                              sortBy.asce === true
                                 ? 'stroke-slate-800'
                                 : 'stroke-slate-200'
                             }`}
@@ -163,8 +185,8 @@ export default function EmployeeTable({ employees, sortBy, setSortBy }) {
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className={`h-5 w-5 ${
-                              sortBy.sort == 'department' &&
-                              sortBy.asce == false
+                              sortBy.sort === 'department' &&
+                              sortBy.asce === false
                                 ? 'stroke-slate-800'
                                 : 'stroke-slate-200'
                             }`}
@@ -183,11 +205,13 @@ export default function EmployeeTable({ employees, sortBy, setSortBy }) {
                       </div>
                     </button>
                   </th>
-                  {/**span need to be hidden or it will occupy spaces and destory the mobile view */}
+                  {/** span need to be hidden or
+                   * it will occupy spaces and destory the mobile view */}
                   <th scope="col">
                     <span className="sr-only hidden">Edit</span>
                   </th>
-                  {/**span need to be hidden or it will occupy spaces and destory the mobile view*/}
+                  {/** span need to be hidden or
+                   * it will occupy spaces and destory the mobile view */}
                   <th scope="col">
                     <span className="sr-only hidden">View More</span>
                   </th>
@@ -198,6 +222,7 @@ export default function EmployeeTable({ employees, sortBy, setSortBy }) {
               </thead>
               <tbody className="divide-y divide-gray-200 bg-white">
                 {employees.map((employee) => (
+                  // eslint-disable-next-line no-underscore-dangle
                   <EmployeeItem employee={employee} key={employee._id} />
                 ))}
               </tbody>
