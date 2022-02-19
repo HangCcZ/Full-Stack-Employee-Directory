@@ -27,10 +27,9 @@ export default async function handler(req, res) {
   const { limit, offset } = getPagination(page - 1, size)
 
   const sortBy =
-    sort && (sort == 'lastName' || sort == 'title' || sort == 'department')
-      ? { [sort]: asce ? 1 : -1 }
-      : {}
-
+    sort && (sort === 'lastName' || sort === 'title' || sort === 'department')
+      ? { [sort]: asce === 'true' ? 1 : -1 }
+      : { lastName: 1 }
   const matchSearch = { $regex: search, $options: 'i' }
   const filter = search
     ? {
