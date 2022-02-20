@@ -1,7 +1,7 @@
 import useSWR from 'swr'
 import Link from 'next/link'
-import EmployeeDetailAnimation from './EmployeeDetailAnimation'
 import { useRouter } from 'next/router'
+import EmployeeDetailAnimation from './EmployeeDetailAnimation'
 import { HOST } from '../config'
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json())
