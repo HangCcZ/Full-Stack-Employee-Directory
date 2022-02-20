@@ -31,26 +31,14 @@ export default function Home() {
   }
 
   const { data, error } = useSWR(() => {
-    // if (router.query.page && router.query.search) {
-    //   return `${HOST}/api/employees/?page=${router.query.page}&search=${router.query.search}`
-    // }
     if (router.query) {
       return `${HOST}/api/employees/?${queryConstruct()}`
     }
     return `${HOST}/api/employees`
-    // if (router.query.page) {
-    //   return `${HOST}/api/employees/?page=${router.query.page}`
-    // }
-    // if (router.query.search) {
-    //   return `${HOST}/api/employees/?search=${router.query.search}`
-    // }
-    // if (router.query.sort && router.query.asce) {
-    //   return `${HOST}/api/employees/?sort=${router.query.sort}&asce=${router.query.asce}`
-    // }
   }, fetcher)
 
   if (error) {
-    /**
+    /** TODO:
      * Add a error page
      */
     return <p>Failed to load data, please try again</p>
@@ -69,11 +57,16 @@ export default function Home() {
 
   return (
     <main className="w-11/12 max-w-5xl flex-1 flex-col py-4 px-2 text-center">
-      <SearchBar searchValue={searchValue} setSearchValue={setSearchValue} />
+      <SearchBar
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
+        sortBy={sortBy}
+      />
       <EmployeeTable
         employees={employees}
         sortBy={sortBy}
         setSortBy={setSortBy}
+        searchValue={searchValue}
       />
 
       <PaginationGroup pageData={pageData} />
