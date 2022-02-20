@@ -1,16 +1,19 @@
-import { useState } from 'react'
 import { useRouter } from 'next/router'
+
 import { HOST } from '../config'
-export default function ({ searchValue = '', setSearchValue }) {
+
+export default function SearchBar({ searchValue = '', setSearchValue }) {
   const router = useRouter()
 
   /**
    * Set focus on search bar after search is completed
    */
   const handleSearchClick = () => {
-    if (searchValue != '') {
+    if (searchValue !== '') {
       router.push(`${HOST}/?search=${searchValue}`)
       setSearchValue(() => searchValue)
+    } else {
+      router.push(`${HOST}`)
     }
   }
 
@@ -18,9 +21,11 @@ export default function ({ searchValue = '', setSearchValue }) {
    * Set focus on search bar after search is completed
    */
   const handleSearchEnter = (e) => {
-    if (searchValue != '' && e.key === 'Enter') {
+    if (searchValue !== '' && e.key === 'Enter') {
       router.push(`${HOST}/?search=${searchValue}`)
       setSearchValue(() => searchValue)
+    } else if (searchValue === '' && e.key === 'Enter') {
+      router.push(`${HOST}`)
     }
   }
 
@@ -31,7 +36,7 @@ export default function ({ searchValue = '', setSearchValue }) {
      * dropdown --- searchInput --- searchIcon --- sort by
      */
     <div className="mx-auto flex w-10/12 justify-center rounded-xl border-2 border-slate-200 bg-gray-100 p-2 text-center  focus-within:ring-2 focus-within:ring-blue-400 hover:shadow-lg hover:ring-2 md:w-2/3">
-      <button onClick={handleSearchClick}>
+      <button type="button" onClick={handleSearchClick}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-6 w-6"
@@ -62,6 +67,7 @@ export default function ({ searchValue = '', setSearchValue }) {
           setSearchValue(() => '')
           router.push(`${HOST}/`)
         }}
+        type="button"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
