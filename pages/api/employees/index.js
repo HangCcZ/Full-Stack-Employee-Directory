@@ -1,6 +1,7 @@
+/* eslint-disable indent */
+import Cors from 'cors'
 import dbConnect from '../../../lib/dbConnect'
 import Employee from '../../../models/Employee'
-import Cors from 'cors'
 import initMiddleware from '../../../lib/init-middleware'
 
 const cors = initMiddleware(
@@ -21,7 +22,7 @@ export default async function handler(req, res) {
   await cors(req, res)
 
   const { method } = req
-  //title option can be add for searching later
+  // title option can be add for searching later
   const { page, size, search, sort, asce } = req.query
 
   const { limit, offset } = getPagination(page - 1, size)
