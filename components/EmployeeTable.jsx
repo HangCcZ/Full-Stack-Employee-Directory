@@ -76,7 +76,9 @@ export default function EmployeeTable({
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className={`h-5 w-5 ${
-                              sortBy.sort === 'lastName' && sortBy.asce === true
+                              !router.query.sort ||
+                              (sortBy.sort === 'lastName' &&
+                                sortBy.asce === true)
                                 ? 'stroke-slate-800'
                                 : 'stroke-slate-200'
                             }`}
@@ -126,7 +128,9 @@ export default function EmployeeTable({
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className={`h-5 w-5 ${
-                              sortBy.sort === 'title' && sortBy.asce === true
+                              router.query.sort &&
+                              sortBy.sort === 'title' &&
+                              sortBy.asce === true
                                 ? 'stroke-slate-800'
                                 : 'stroke-slate-200'
                             }`}
@@ -144,7 +148,9 @@ export default function EmployeeTable({
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className={`h-5 w-5 ${
-                              sortBy.sort === 'title' && sortBy.asce === false
+                              router.query.sort &&
+                              sortBy.sort === 'title' &&
+                              sortBy.asce === false
                                 ? 'stroke-slate-800'
                                 : 'stroke-slate-200'
                             }`}
@@ -175,6 +181,7 @@ export default function EmployeeTable({
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className={`h-5 w-5 ${
+                              router.query.sort &&
                               sortBy.sort === 'department' &&
                               sortBy.asce === true
                                 ? 'stroke-slate-800'
@@ -194,6 +201,7 @@ export default function EmployeeTable({
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className={`h-5 w-5 ${
+                              router.query.sort &&
                               sortBy.sort === 'department' &&
                               sortBy.asce === false
                                 ? 'stroke-slate-800'
