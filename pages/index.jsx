@@ -18,20 +18,35 @@ export default function Home() {
    * need to handle query that makes no sense, for example /?page=100
    * when there are only 10 pages total
    */
+
+  const queryConstruct = () => {
+    if (Object.entries(router.query).length > 0) {
+      let queryString = ''
+      Object.entries(router.query).forEach((keyValue) => {
+        queryString += `${keyValue[0]}=${keyValue[1]}&`
+      })
+      return queryString.slice(0, -1) // remove last &
+    }
+    return ''
+  }
+
   const { data, error } = useSWR(() => {
-    if (router.query.page && router.query.search) {
-      return `${HOST}/api/employees/?page=${router.query.page}&search=${router.query.search}`
-    }
-    if (router.query.page) {
-      return `${HOST}/api/employees/?page=${router.query.page}`
-    }
-    if (router.query.search) {
-      return `${HOST}/api/employees/?search=${router.query.search}`
-    }
-    if (router.query.sort && router.query.asce) {
-      return `${HOST}/api/employees/?sort=${router.query.sort}&asce=${router.query.asce}`
+    // if (router.query.page && router.query.search) {
+    //   return `${HOST}/api/employees/?page=${router.query.page}&search=${router.query.search}`
+    // }
+    if (router.query) {
+      return `${HOST}/api/employees/?${queryConstruct()}`
     }
     return `${HOST}/api/employees`
+    // if (router.query.page) {
+    //   return `${HOST}/api/employees/?page=${router.query.page}`
+    // }
+    // if (router.query.search) {
+    //   return `${HOST}/api/employees/?search=${router.query.search}`
+    // }
+    // if (router.query.sort && router.query.asce) {
+    //   return `${HOST}/api/employees/?sort=${router.query.sort}&asce=${router.query.asce}`
+    // }
   }, fetcher)
 
   if (error) {
