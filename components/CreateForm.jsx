@@ -18,7 +18,7 @@ export default function CreateForm({ preloaded, isNew }) {
     watch,
     formState: { errors },
   } = useForm({
-    defaultValues: preloaded ? preloaded : {},
+    defaultValues: preloaded || {},
   })
 
   /**
@@ -35,11 +35,12 @@ export default function CreateForm({ preloaded, isNew }) {
    * @param {updated employee data} formFields
    * @returns
    */
+  // eslint-disable-next-line consistent-return
   const updateEmployee = async (formFields) => {
     const { id } = router.query
     // data.pictureUrl will be type of object (FileList) if image is updated
     setRequestLoading(() => true)
-    if (typeof formFields.pictureUrl != 'string') {
+    if (typeof formFields.pictureUrl !== 'string') {
       try {
         const formData = new FormData()
         for (const file of formFields.pictureUrl) {
@@ -52,15 +53,12 @@ export default function CreateForm({ preloaded, isNew }) {
         )
         formFields.pictureUrl = cloudinaryData.data.url
       } catch (error) {
-        //TODO: Triggle a fail notification
+        // TODO: Triggle a fail notification
         setRequestLoading(() => false)
         return <p>Error when uploading image </p>
       }
     }
     try {
-      /**TODO:
-       * Absolute route is used here, need to replace in production
-       */
       const response = await axios.put(
         `${HOST}/api/employees/${id}`,
         formFields
@@ -69,12 +67,12 @@ export default function CreateForm({ preloaded, isNew }) {
       mutate(`${HOST}/api/employees/${id}`, data.updateEmployee, false)
       setRequestLoading(() => false)
 
-      if (response.status == 201) {
+      if (response.status === 201) {
         router.push(`${HOST}`)
-        //TODO: Triggle a success notification
+        // TODO: Triggle a success notification
       }
     } catch (error) {
-      //TODO: Triggle a fail notification
+      // TODO: Triggle a fail notification
       return <p>Error when updating employee profile </p>
     }
   }
@@ -100,23 +98,23 @@ export default function CreateForm({ preloaded, isNew }) {
       )
       formFields.pictureUrl = cloudinaryData.data.url
     } catch (error) {
-      //TODO: Triggle a fail notification
+      // TODO: Triggle a fail notification
       setRequestLoading(() => false)
       return <p>Error when uploading image </p>
     }
 
     try {
-      /**TODO:
+      /** TODO:
        * Absolute route is used here, need to replace in production
        */
       const response = await axios.post(`${HOST}/api/employees/`, formFields)
       setRequestLoading(() => false)
-      if (response.status == 201) {
+      if (response.status === 201) {
         router.push(`${HOST}`)
-        //TODO: Triggle a success notification
+        // TODO: Triggle a success notification
       }
     } catch (error) {
-      //TODO: Triggle a fail notification
+      // TODO: Triggle a fail notification
       setRequestLoading(() => false)
       return <p>Error when creating new employee profile </p>
     }
@@ -129,7 +127,7 @@ export default function CreateForm({ preloaded, isNew }) {
    */
   const onSubmit = async (formFields) => {
     if (!isNew) return updateEmployee(formFields)
-    else return createEmployee(formFields)
+    return createEmployee(formFields)
   }
 
   return (
