@@ -3,7 +3,12 @@ import { useRouter } from 'next/router'
 import EmployeeItem from './EmployeeItem'
 import { HOST } from '../config'
 
-export default function EmployeeTable({ employees, sortBy, setSortBy }) {
+export default function EmployeeTable({
+  employees,
+  sortBy,
+  setSortBy,
+  searchValue,
+}) {
   const router = useRouter()
   const onNameClick = () => {
     /**
@@ -18,10 +23,12 @@ export default function EmployeeTable({ employees, sortBy, setSortBy }) {
     if (sortBy.sort === 'lastName') {
       const asceOrder = !sortBy.asce
       setSortBy(() => ({ sort: sortBy.sort, asce: !sortBy.asce }))
-      router.push(`${HOST}/?sort=lastName&asce=${asceOrder}`)
+      router.push(
+        `${HOST}/?search=${searchValue}&sort=lastName&asce=${asceOrder}`
+      )
     } else {
       setSortBy(() => ({ sort: 'lastName', asce: true }))
-      router.push(`${HOST}/?sort=lastName&asce=true`)
+      router.push(`${HOST}/?search=${searchValue}&sort=lastName&asce=true`)
     }
   }
 
@@ -29,10 +36,10 @@ export default function EmployeeTable({ employees, sortBy, setSortBy }) {
     if (sortBy.sort === 'title') {
       const asceOrder = !sortBy.asce
       setSortBy(() => ({ sort: sortBy.sort, asce: !sortBy.asce }))
-      router.push(`${HOST}/?sort=title&asce=${asceOrder}`)
+      router.push(`${HOST}/?search=${searchValue}&sort=title&asce=${asceOrder}`)
     } else {
       setSortBy(() => ({ sort: 'title', asce: true }))
-      router.push(`${HOST}/?sort=title&asce=true`)
+      router.push(`${HOST}/?search=${searchValue}&sort=title&asce=true`)
     }
   }
 
@@ -40,10 +47,12 @@ export default function EmployeeTable({ employees, sortBy, setSortBy }) {
     if (sortBy.sort === 'department') {
       const asceOrder = !sortBy.asce
       setSortBy(() => ({ sort: sortBy.sort, asce: !sortBy.asce }))
-      router.push(`${HOST}/?sort=department&asce=${asceOrder}`)
+      router.push(
+        `${HOST}/?search=${searchValue}&sort=department&asce=${asceOrder}`
+      )
     } else {
       setSortBy(() => ({ sort: 'department', asce: true }))
-      router.push(`${HOST}/?sort=department&asce=true`)
+      router.push(`${HOST}/?search=${searchValue}&sort=department&asce=true`)
     }
   }
 
