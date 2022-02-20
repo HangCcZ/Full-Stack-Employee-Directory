@@ -1,6 +1,7 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import Link from 'next/link'
 import { HOST } from '../config'
-export default function PaginationGroup({ pageData }) {
+export default function PaginationGroup({ pageData, searchValue, sortBy }) {
   const renderPageLinks = () => {
     const temp = new Array(pageData.totalPages).fill(0)
 
@@ -12,12 +13,14 @@ export default function PaginationGroup({ pageData }) {
        */
       return temp.map((element, index) => (
         <Link
-          href={`${HOST}/?page=${index + 1}`}
+          href={`${HOST}/?search=${searchValue}&sort=${sortBy.sort}&asce=${
+            sortBy.asce
+          }&page=${index + 1}`}
           key={`${HOST}/?page=${index + 1}`}
         >
           <a
             className={`${
-              pageData.currentPage == index + 1
+              pageData.currentPage === index + 1
                 ? 'z-10 border-indigo-500 bg-indigo-50 text-indigo-600'
                 : ''
             } relative inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50`}
@@ -26,25 +29,28 @@ export default function PaginationGroup({ pageData }) {
           </a>
         </Link>
       ))
-    } else {
-      /**
-       *  trick case: what happen when page is more than 7 ?
-       *  last 3 links can always link to the last 3 pages
-       *  */
     }
+    /**
+     *  trick case: what happen when page is more than 7 ?
+     *  last 3 links can always link to the last 3 pages
+     *  */
   }
   return (
     <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
       <div className="flex flex-1 justify-between sm:hidden">
         {pageData.prevPage && (
-          <Link href={`${HOST}/?page=${pageData.prevPage}`}>
+          <Link
+            href={`${HOST}/?search=${searchValue}&sort=${sortBy.sort}&asce=${sortBy.asce}&page=${pageData.prevPage}`}
+          >
             <a className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
               Previous
             </a>
           </Link>
         )}
         {pageData.nextPage && (
-          <Link href={`${HOST}/?page=${pageData.nextPage}`}>
+          <Link
+            href={`${HOST}/?search=${searchValue}&sort=${sortBy.sort}&asce=${sortBy.asce}&page=${pageData.nextPage}`}
+          >
             <a className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
               Next
             </a>
@@ -78,7 +84,9 @@ export default function PaginationGroup({ pageData }) {
             aria-label="Pagination"
           >
             {pageData.prevPage && (
-              <Link href={`${HOST}/?page=${pageData.prevPage}`}>
+              <Link
+                href={`${HOST}/?search=${searchValue}&sort=${sortBy.sort}&asce=${sortBy.asce}&page=${pageData.prevPage}`}
+              >
                 <a className="relative inline-flex items-center rounded-l-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50">
                   <span className="sr-only">Previous</span>
                   <svg
@@ -102,7 +110,9 @@ export default function PaginationGroup({ pageData }) {
             {/* Current: "z-10 bg-indigo-50 border-indigo-500 text-indigo-600", Default: "bg-white border-gray-300 text-gray-500 hover:bg-gray-50" */}
             {renderPageLinks()}
             {pageData.nextPage && (
-              <Link href={`${HOST}/?page=${pageData.nextPage}`}>
+              <Link
+                href={`${HOST}/?search=${searchValue}&sort=${sortBy.sort}&asce=${sortBy.asce}&page=${pageData.nextPage}`}
+              >
                 <a
                   href="#"
                   className="relative inline-flex items-center rounded-r-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50"
