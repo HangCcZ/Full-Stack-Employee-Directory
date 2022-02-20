@@ -2,12 +2,21 @@ import { useRouter } from 'next/router'
 
 import { HOST } from '../config'
 
-export default function SearchBar({ searchValue = '', setSearchValue }) {
+export default function SearchBar({
+  searchValue = '',
+  setSearchValue,
+  sortBy,
+}) {
   const router = useRouter()
 
+  /** TODO: Perhaps use context here to aggregate all query string values
+   *
+   */
   const handleSearchClick = () => {
     if (searchValue !== '') {
-      router.push(`${HOST}/?search=${searchValue}`)
+      router.push(
+        `${HOST}/?search=${searchValue}&sort=${sortBy.sort}&asce=${sortBy.asce}`
+      )
       setSearchValue(() => searchValue)
     } else {
       router.push(`${HOST}`)
@@ -16,7 +25,9 @@ export default function SearchBar({ searchValue = '', setSearchValue }) {
 
   const handleSearchEnter = (e) => {
     if (searchValue !== '' && e.key === 'Enter') {
-      router.push(`${HOST}/?search=${searchValue}`)
+      router.push(
+        `${HOST}/?search=${searchValue}&sort=${sortBy.sort}&asce=${sortBy.asce}`
+      )
       setSearchValue(() => searchValue)
     } else if (searchValue === '' && e.key === 'Enter') {
       router.push(`${HOST}`)
