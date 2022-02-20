@@ -19,14 +19,14 @@
 1. Clone this repository by running `git clone https://github.com/HangCcZ/Code-Challenge-for-Postlight.git`
 2. Rename the `.env.example` file to `.env.local` in project root directory to store environment variables. This file is having two variables called `MONGODB_URI` and `LOCALHOST_NAME`
 3. Create a (MongoDB)[https://www.mongodb.com/] account, create a new database and wait for database provising (this may take few minutes)...
-    1. After newly created database is ready, click **connect**
-    2. Select **Connect your application**, make sure that the driver for is **Node.js**. 
-    3. Copy and paste the connection string and assign it to the `MONGODB_URI` in `.env.local`. For example: `MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.2w7rv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`. 
-    4. Make sure to whitelist your IP address in **Security-> Network Access**.
-5. In the terminal, run `npm install` and wait for completion
-6. Run `npm run dev` in the terminal
-7. Assigned the local website address of this application to `LOCALHOST_NAME` in `.env.local`. For example. `LOCALHOST_NAME = http://localhost:3000`
-8. Add sample dataset as you wish, manually via UI, Postman, or other method.
+   1. After newly created database is ready, click **connect**
+   2. Select **Connect your application**, make sure that the driver for is **Node.js**.
+   3. Copy and paste the connection string and assign it to the `MONGODB_URI` in `.env.local`. For example: `MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.2w7rv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`.
+   4. Make sure to whitelist your IP address in **Security-> Network Access**.
+4. In the terminal, run `npm install` and wait for completion
+5. Run `npm run dev` in the terminal
+6. Assigned the local website address of this application to `LOCALHOST_NAME` in `.env.local`. For example. `LOCALHOST_NAME = http://localhost:3000`
+7. Add sample dataset as you wish, manually via UI, Postman, or other method.
 
 ## Suggested Features by the Coding Challenge - Completed and Missing
 
@@ -40,24 +40,20 @@
 - [x] Forms for creating, updating, and deleting employees (All completed)
 - [x] Source data from a third party person API (Wrote a snippet to consume this data, the data was then 'POST' to MongoDB as sample dataset for the backend)
 - [x] Ability to search for employees (Completed with support of pagination)
-
-### Features that are missing:
-
-- [ ] Ability to display employees by department, title, location, etc. (This can be done by sorting the data)
-- [ ] Creative use of animation (This feature was not a top priority when building the application, animation to show loading state would be great to have)
-- [ ] Testing (Manually tested backend API with Postman, manually tested frontend by making sure completed features work as intended)
+- [x] Ability to display employees by department, title, location, etc. (This can be done by sorting the data)
+- [x] Creative use of animation (added animation during data fetching)
+- [x] Testing (Manually tested backend API with Postman, manually tested frontend by making sure completed features work as intended)
 
 ## How to make it better in production:
 
-1. Testing!
-2. Add animation!
+1. More testing!
+2. Add animation more!
 3. Improve website's accessibility
 4. Add notification to show the API responses
 5. Add code to handle pagination when there are many pages (current pagination UI only work well when totalpages is less than 7)
-6. Sorting based on department, title, name etc
-7. Searching based on some other constrains eg: department, title, name
-8. Add form validation on inputs
-9. Add authentication and authorization
+6. Searching based on some other constrains eg: department, title, name
+7. Add form validation on inputs
+8. Add authentication and authorization
 
 ## Notes on how I built the application:
 
