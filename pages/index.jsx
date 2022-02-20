@@ -9,8 +9,7 @@ import ListAnimation from '../components/ListAnimation'
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
-export default function Home() {
-  const [searchValue, setSearchValue] = useState('')
+export default function Home({ searchValue, setSearchValue }) {
   const [sortBy, setSortBy] = useState({ sort: 'lastName', asce: true })
   const router = useRouter()
 
@@ -18,7 +17,6 @@ export default function Home() {
    * need to handle query that makes no sense, for example /?page=100
    * when there are only 10 pages total
    */
-
   const queryConstruct = () => {
     if (Object.entries(router.query).length > 0) {
       let queryString = ''
@@ -44,6 +42,9 @@ export default function Home() {
     return <p>Failed to load data, please try again</p>
   }
 
+  /**
+   * Loading animation
+   */
   if (!data && !error) {
     return (
       <div className="w-11/12 max-w-5xl flex-1 flex-col py-4 px-2 text-center">
@@ -54,7 +55,6 @@ export default function Home() {
   }
 
   const { employees, pageData } = data
-
   return (
     <main className="w-11/12 max-w-5xl flex-1 flex-col py-4 px-2 text-center">
       <SearchBar
@@ -69,7 +69,11 @@ export default function Home() {
         searchValue={searchValue}
       />
 
-      <PaginationGroup pageData={pageData} />
+      <PaginationGroup
+        pageData={pageData}
+        searchValue={searchValue}
+        sortBy={sortBy}
+      />
     </main>
   )
 }
