@@ -60,7 +60,7 @@ export default function EmployeeTable({
     <div className="mt-6 flex flex-col">
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-          <div className="overflow-hidden rounded-t-lg border-gray-200">
+          <div className="overflow-hidden rounded-t-lg border border-b-0 border-gray-200">
             <table className="min-w-full divide-y divide-gray-200 ">
               <thead className="bg-gray-50">
                 <tr>
