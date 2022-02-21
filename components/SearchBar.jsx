@@ -40,7 +40,7 @@ export default function SearchBar({
      * inspired by amazon.com
      * dropdown --- searchInput --- searchIcon --- sort by
      */
-    <div className="mx-auto flex w-10/12 justify-center rounded-xl border-2 border-slate-200 bg-gray-100 p-2 text-center  focus-within:ring-2 focus-within:ring-blue-400 hover:shadow-lg hover:ring-2 md:w-2/3">
+    <div className="mx-auto flex w-10/12 justify-center rounded-xl border border-gray-300 bg-gray-100 p-2 text-center shadow-sm focus-within:ring-2 focus-within:ring-blue-400 hover:shadow-lg hover:ring-2 md:w-2/3">
       <button type="button" onClick={handleSearchClick}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
