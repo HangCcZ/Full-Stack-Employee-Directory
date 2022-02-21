@@ -73,46 +73,8 @@ export default function EmployeeTable({
                       <div className="flex items-center">
                         <h3>Name</h3>
                         <div className="ml-1 inline flex-col">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className={`h-5 w-5 ${
-                              !router.query.sort ||
-                              (sortBy.sort === 'lastName' &&
-                                sortBy.asce === true)
-                                ? 'stroke-slate-800'
-                                : 'stroke-slate-200'
-                            }`}
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M7 11l5-5m0 0l5 5m-5-5v12"
-                            />
-                          </svg>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className={`h-5 w-5 ${
-                              router.query.sort &&
-                              sortBy.sort === 'lastName' &&
-                              sortBy.asce === false
-                                ? 'stroke-slate-800'
-                                : 'stroke-slate-200'
-                            }`}
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M17 13l-5 5m0 0l-5-5m5 5V6"
-                            />
-                          </svg>
+                          <UpArrowForName router={router} sortBy={sortBy} />
+                          <DownArrowForName router={router} sortBy={sortBy} />
                         </div>
                       </div>
                     </button>
@@ -126,46 +88,8 @@ export default function EmployeeTable({
                       <div className="flex items-center">
                         <h3>TITLE</h3>
                         <div className="ml-1 inline flex-col">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className={`h-5 w-5 ${
-                              router.query.sort &&
-                              sortBy.sort === 'title' &&
-                              sortBy.asce === true
-                                ? 'stroke-slate-800'
-                                : 'stroke-slate-200'
-                            }`}
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M7 11l5-5m0 0l5 5m-5-5v12"
-                            />
-                          </svg>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className={`h-5 w-5 ${
-                              router.query.sort &&
-                              sortBy.sort === 'title' &&
-                              sortBy.asce === false
-                                ? 'stroke-slate-800'
-                                : 'stroke-slate-200'
-                            }`}
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M17 13l-5 5m0 0l-5-5m5 5V6"
-                            />
-                          </svg>
+                          <UpArrowForTitle router={router} sortBy={sortBy} />
+                          <DownArrowForTitle router={router} sortBy={sortBy} />
                         </div>
                       </div>
                     </button>
@@ -179,57 +103,21 @@ export default function EmployeeTable({
                       <div className="flex items-center">
                         <h3>DEPARTMENT</h3>
                         <div className="ml-1 inline flex-col">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className={`h-5 w-5 ${
-                              router.query.sort &&
-                              sortBy.sort === 'department' &&
-                              sortBy.asce === true
-                                ? 'stroke-slate-800'
-                                : 'stroke-slate-200'
-                            }`}
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M7 11l5-5m0 0l5 5m-5-5v12"
-                            />
-                          </svg>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className={`h-5 w-5 ${
-                              router.query.sort &&
-                              sortBy.sort === 'department' &&
-                              sortBy.asce === false
-                                ? 'stroke-slate-800'
-                                : 'stroke-slate-200'
-                            }`}
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M17 13l-5 5m0 0l-5-5m5 5V6"
-                            />
-                          </svg>
+                          <UpArrowForDepartment
+                            router={router}
+                            sortBy={sortBy}
+                          />
+                          <DownArrowForDepartment
+                            router={router}
+                            sortBy={sortBy}
+                          />
                         </div>
                       </div>
                     </button>
                   </th>
-                  {/** span need to be hidden or
-                   * it will occupy spaces and destory the mobile view */}
                   <th scope="col">
                     <span className="sr-only hidden">Edit</span>
                   </th>
-                  {/** span need to be hidden or
-                   * it will occupy spaces and destory the mobile view */}
                   <th scope="col">
                     <span className="sr-only hidden">View More</span>
                   </th>
@@ -249,5 +137,148 @@ export default function EmployeeTable({
         </div>
       </div>
     </div>
+  )
+}
+
+function UpArrowForName({ router, sortBy }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className={`h-5 w-5 ${
+        !router.query.sort ||
+        (sortBy.sort === 'lastName' && sortBy.asce === true)
+          ? 'stroke-slate-800'
+          : 'stroke-slate-200'
+      }`}
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M7 11l5-5m0 0l5 5m-5-5v12"
+      />
+    </svg>
+  )
+}
+
+function DownArrowForName({ router, sortBy }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className={`h-5 w-5 ${
+        router.query.sort && sortBy.sort === 'lastName' && sortBy.asce === false
+          ? 'stroke-slate-800'
+          : 'stroke-slate-200'
+      }`}
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M17 13l-5 5m0 0l-5-5m5 5V6"
+      />
+    </svg>
+  )
+}
+
+function UpArrowForTitle({ router, sortBy }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className={`h-5 w-5 ${
+        router.query.sort && sortBy.sort === 'title' && sortBy.asce === true
+          ? 'stroke-slate-800'
+          : 'stroke-slate-200'
+      }`}
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M7 11l5-5m0 0l5 5m-5-5v12"
+      />
+    </svg>
+  )
+}
+
+function DownArrowForTitle({ router, sortBy }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className={`h-5 w-5 ${
+        router.query.sort && sortBy.sort === 'title' && sortBy.asce === false
+          ? 'stroke-slate-800'
+          : 'stroke-slate-200'
+      }`}
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M17 13l-5 5m0 0l-5-5m5 5V6"
+      />
+    </svg>
+  )
+}
+
+function UpArrowForDepartment({ router, sortBy }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className={`h-5 w-5 ${
+        router.query.sort &&
+        sortBy.sort === 'department' &&
+        sortBy.asce === true
+          ? 'stroke-slate-800'
+          : 'stroke-slate-200'
+      }`}
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M7 11l5-5m0 0l5 5m-5-5v12"
+      />
+    </svg>
+  )
+}
+
+function DownArrowForDepartment({ router, sortBy }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className={`h-5 w-5 ${
+        router.query.sort &&
+        sortBy.sort === 'department' &&
+        sortBy.asce === false
+          ? 'stroke-slate-800'
+          : 'stroke-slate-200'
+      }`}
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M17 13l-5 5m0 0l-5-5m5 5V6"
+      />
+    </svg>
   )
 }
