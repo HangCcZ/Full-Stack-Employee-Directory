@@ -96,6 +96,7 @@ export default function EmployeeTable({
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className={`h-5 w-5 ${
+                              router.query.sort &&
                               sortBy.sort === 'lastName' &&
                               sortBy.asce === false
                                 ? 'stroke-slate-800'
