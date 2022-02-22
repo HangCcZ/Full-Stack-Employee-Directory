@@ -40,7 +40,6 @@ export default function Home({ searchValue, setSearchValue }) {
       </div>
     )
   }
-  console.log(router)
   const { employees, pageData } = data
   return (
     <main className="w-11/12 max-w-5xl flex-1 flex-col py-4 px-2 text-center">

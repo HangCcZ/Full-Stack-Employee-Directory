@@ -26,11 +26,9 @@ export default function ListAnimation() {
                   >
                     Department
                   </th>
-                  {/**span need to be hidden or it will occupy spaces and destory the mobile view */}
                   <th scope="col">
                     <span className="sr-only hidden">Edit</span>
                   </th>
-                  {/**span need to be hidden or it will occupy spaces and destory the mobile view*/}
                   <th scope="col">
                     <span className="sr-only hidden">View More</span>
                   </th>
