@@ -17,23 +17,10 @@ export default function Home({ searchValue, setSearchValue }) {
    * need to handle query that makes no sense, for example /?page=100
    * when there are only 10 pages total
    */
-  const queryConstruct = () => {
-    if (Object.entries(router.query).length > 0) {
-      let queryString = ''
-      Object.entries(router.query).forEach((keyValue) => {
-        queryString += `${keyValue[0]}=${keyValue[1]}&`
-      })
-      return queryString.slice(0, -1) // remove last &
-    }
-    return ''
-  }
-
-  const { data, error } = useSWR(() => {
-    if (router.query) {
-      return `${HOST}/api/employees/?${queryConstruct()}`
-    }
-    return `${HOST}/api/employees`
-  }, fetcher)
+  const { data, error } = useSWR(
+    () => `${HOST}/api/employees${router.asPath}`,
+    fetcher
+  )
 
   if (error) {
     /** TODO:
@@ -53,7 +40,7 @@ export default function Home({ searchValue, setSearchValue }) {
       </div>
     )
   }
-
+  console.log(router)
   const { employees, pageData } = data
   return (
     <main className="w-11/12 max-w-5xl flex-1 flex-col py-4 px-2 text-center">
