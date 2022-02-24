@@ -1,4 +1,6 @@
-# Solution for Postlight Code Challenge - by Hang Chen
+
+# Full Stack Employee Directory
+
 
 ## Checkout deployed version [here](https://code-challenge-for-postlight.vercel.app)
 
