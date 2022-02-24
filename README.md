@@ -15,7 +15,7 @@
 
 ## Setup Instructions:
 
-1. Clone this repository by running `git clone https://github.com/HangCcZ/Code-Challenge-for-Postlight.git`
+1. Clone this repository by running `git clone https://github.com/HangCcZ/Full-Stack-Employee-Directory.git`
 2. Rename the `.env.example` file to `.env.local` in project root directory to store environment variables. This file is having two variables called `MONGODB_URI` and `LOCALHOST_NAME`
 3. Create a (MongoDB)[https://www.mongodb.com/] account, create a new database and wait for database provising (this may take few minutes)...
    1. After newly created database is ready, click **connect**
