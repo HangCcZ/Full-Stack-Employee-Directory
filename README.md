@@ -43,7 +43,7 @@
 - [x] Creative use of animation (added animation during data fetching)
 - [x] Testing (Manually tested backend API with Postman, manually tested frontend by making sure completed features work as intended)
 
-## How to make it better in production:
+## How to make it better in production (Todos):
 
 1. More testing!
 2. Add animation more!
@@ -55,8 +55,6 @@
 8. Add authentication and authorization
 
 ## Notes on how I built the application:
-
-### After reading the instructions, I know that I would need the following:
 
 #### Backend:
 
