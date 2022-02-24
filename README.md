@@ -1,8 +1,5 @@
 
-# Full Stack Employee Directory
-
-
-## Checkout deployed version [here](https://code-challenge-for-postlight.vercel.app)
+# Full Stack Employee Directory - deployed [here](https://code-challenge-for-postlight.vercel.app)
 
 ## Technologies and libraries used:
 
