@@ -39,7 +39,7 @@
 - [x] Forms for creating, updating, and deleting employees (All completed)
 - [x] Source data from a third party person API (Wrote a snippet to consume this data, the data was then 'POST' to MongoDB as sample dataset for the backend)
 - [x] Ability to search for employees (Completed with support of pagination)
-- [x] Ability to display employees by department, title, location, etc. (This can be done by sorting the data)
+- [x] Ability to display employees by department, title, location, etc.
 - [x] Creative use of animation (added animation during data fetching)
 - [x] Testing (Manually tested backend API with Postman, manually tested frontend by making sure completed features work as intended)
 
