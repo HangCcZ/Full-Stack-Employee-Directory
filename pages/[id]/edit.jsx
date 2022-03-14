@@ -6,7 +6,7 @@ import EditAnimation from '../../components/EditAnimation'
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
-export default function Edit() {
+export default function Edit({ notify }) {
   const router = useRouter()
   const { id } = router.query
   // rename data to employee
@@ -42,10 +42,8 @@ export default function Edit() {
   }
 
   return (
-    <>
-      <main className="w-11/12 max-w-5xl flex-1 flex-col py-4 px-2 text-center sm:px-20">
-        <CreateForm preloaded={employeeForm} isNew={false} />
-      </main>
-    </>
+    <main className="w-11/12 max-w-5xl flex-1 flex-col py-4 px-2 text-center sm:px-20">
+      <CreateForm preloaded={employeeForm} isNew={false} notify={notify} />
+    </main>
   )
 }
