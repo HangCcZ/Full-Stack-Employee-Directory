@@ -45,12 +45,12 @@
 - [x] Creative use of animation (added animation during data fetching)
 - [x] Testing (Manually tested backend API with Postman, manually tested frontend by making sure completed features work as intended)
 
-## How to make it better in production (Todos):
+## How to make it better in production (Todos - I'm actively working on these):
 
 1. More testing!
 2. Add animation more!
 3. Improve website's accessibility
-4. Add notification to show the API responses
+4. - [x] Add notification to show the API responses
 5. Add code to handle pagination when there are many pages (current pagination UI only work well when totalpages is less than 7)
 6. Searching based on some other constrains eg: department, title, name
 7. Add form validation on inputs
