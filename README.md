@@ -48,9 +48,9 @@
 ## How to make it better in production (Todos - I'm actively working on these):
 
 1. More testing!
-2. Add animation more!
+2. Add animation more! (Need to fix some animation issue when on paginated pages)
 3. Improve website's accessibility
-4. - [x] Add notification to show the API responses
+4. Add notification to show the API responses (Completed on 3/13/2022)
 5. Add code to handle pagination when there are many pages (current pagination UI only work well when totalpages is less than 7)
 6. Searching based on some other constrains eg: department, title, name
 7. Add form validation on inputs
