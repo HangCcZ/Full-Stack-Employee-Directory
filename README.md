@@ -1,6 +1,5 @@
-# Solution for Postlight Code Challenge - by Hang Chen
 
-## Checkout deployed version [here](https://code-challenge-for-postlight.vercel.app)
+# Full Stack Employee Directory - deployed [here](https://code-challenge-for-postlight.vercel.app)
 
 ## Technologies and libraries used:
 
@@ -16,7 +15,9 @@
 
 ## Setup Instructions:
 
-1. Clone this repository by running `git clone https://github.com/HangCcZ/Code-Challenge-for-Postlight.git`
+**Make sure you have lastest Node.js [LTS](https://nodejs.org/en/download/) installed**
+
+1. Clone this repository by running `git clone https://github.com/HangCcZ/Full-Stack-Employee-Directory.git`
 2. Rename the `.env.example` file to `.env.local` in project root directory to store environment variables. This file is having two variables called `MONGODB_URI` and `LOCALHOST_NAME`
 3. Create a (MongoDB)[https://www.mongodb.com/] account, create a new database and wait for database provising (this may take few minutes)...
    1. After newly created database is ready, click **connect**
@@ -40,11 +41,11 @@
 - [x] Forms for creating, updating, and deleting employees (All completed)
 - [x] Source data from a third party person API (Wrote a snippet to consume this data, the data was then 'POST' to MongoDB as sample dataset for the backend)
 - [x] Ability to search for employees (Completed with support of pagination)
-- [x] Ability to display employees by department, title, location, etc. (This can be done by sorting the data)
+- [x] Ability to display employees by department, title, location, etc.
 - [x] Creative use of animation (added animation during data fetching)
 - [x] Testing (Manually tested backend API with Postman, manually tested frontend by making sure completed features work as intended)
 
-## How to make it better in production:
+## How to make it better in production (Todos):
 
 1. More testing!
 2. Add animation more!
@@ -56,8 +57,6 @@
 8. Add authentication and authorization
 
 ## Notes on how I built the application:
-
-### After reading the instructions, I know that I would need the following:
 
 #### Backend:
 
