@@ -9,9 +9,6 @@ export default function SelectFilter() {
     <select>
       <label>Filter</label>
       <div>
-        <button type="button">
-          <span>{selectedFilter}</span>
-        </button>
         {filterOptions.map((filterValue) => (
           <option
             value={filterValue}

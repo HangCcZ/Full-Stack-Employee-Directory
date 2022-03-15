@@ -29,8 +29,18 @@ export default function SearchBar({
         `${HOST}/?search=${searchValue}&sort=${sortBy.sort}&asce=${sortBy.asce}`
       )
       setSearchValue(() => searchValue)
-    } else if (searchValue === '' && e.key === 'Enter') {
+    } else if (
+      (searchValue === '' && e.key === 'Enter') ||
+      (searchValue.length === 1 && e.key === 'Backspace')
+    ) {
       router.push(`${HOST}`)
+    }
+  }
+
+  const handleSearchDelete = (e) => {
+    if (searchValue.length === 1 && e.key === 'Backspace') {
+      setSearchValue(() => '')
+      router.push(`${HOST}/?sort=${sortBy.sort}&asce=${sortBy.asce}`)
     }
   }
 
@@ -66,6 +76,7 @@ export default function SearchBar({
         value={searchValue}
         onChange={(e) => setSearchValue(() => e.target.value)}
         onKeyPress={handleSearchEnter}
+        onKeyDown={handleSearchDelete}
       />
       <button
         onClick={() => {
