@@ -55,6 +55,7 @@
 6. Searching based on some other constrains eg: department, title, name
 7. Add form validation on inputs
 8. Add authentication and authorization
+9. Reduce image size to make it faster to load
 
 ## Notes on how I built the application:
 
